@@ -10,6 +10,8 @@
 #ifndef WAITINGWIDGET_H
 #define WAITINGWIDGET_H
 
+#include "DllMacro.h"
+
 #include "widgets/waitingspinnerwidget.h"
 
 #include <chrono>
@@ -24,12 +26,15 @@ class QTimer;
  * and the text is displayed centered below it. Use this
  * to display a long-term waiting situation with a status report.
  */
-class WaitingWidget : public WaitingSpinnerWidget
+class UIDLLEXPORT WaitingWidget : public WaitingSpinnerWidget
 {
 public:
     /// Create a WaitingWidget with initial @p text label.
     explicit WaitingWidget( const QString& text, QWidget* parent = nullptr );
     ~WaitingWidget() override;
+
+protected:
+    void changeEvent( QEvent* event ) override;
 };
 
 /** @brief A spinner and a countdown inside it
@@ -39,7 +44,7 @@ public:
  * every second. The signal timeout() is sent every time
  * the countdown reaches 0.
  */
-class CountdownWaitingWidget : public WaitingSpinnerWidget
+class UIDLLEXPORT CountdownWaitingWidget : public WaitingSpinnerWidget
 {
     Q_OBJECT
 public:
@@ -61,6 +66,9 @@ Q_SIGNALS:
 
 protected Q_SLOTS:
     void tick();
+
+protected:
+    void changeEvent( QEvent* event ) override;
 
 private:
     struct Private;

@@ -17,14 +17,15 @@ calamares_add_plugin(netinstall
     UI
         page_netinst.ui
     LINK_PRIVATE_LIBRARIES
-        Qt5::Network
+        ${qtname}::Network
+        ${qtname}::Widgets
     SHARED_LIB
 )
 
-if(KF5CoreAddons_FOUND)
-    calamares_add_test(
-        netinstalltest
-        SOURCES Tests.cpp Config.cpp LoaderQueue.cpp PackageTreeItem.cpp PackageModel.cpp
-        LIBRARIES Qt5::Gui Qt5::Network KF5::CoreAddons
-    )
+if(TARGET ${kfname}::CoreAddons)
+    #calamares_add_test(
+    #    netinstalltest
+    #    SOURCES Tests.cpp Config.cpp LoaderQueue.cpp PackageTreeItem.cpp PackageModel.cpp
+    #    LIBRARIES ${qtname}::Widgets ${qtname}::Gui ${qtname}::Network ${kfname}::CoreAddons
+    #)
 endif()

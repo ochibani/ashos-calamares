@@ -125,18 +125,27 @@ def is_zfs_root(partition):
     return partition["mountPoint"] == "/" and partition["fs"] == "zfs"
 
 
+def have_program_in_target(program : str):
+    """Returns @c True if @p program is in path in the target"""
+    return libcalamares.utils.target_env_call(["/usr/bin/which", program]) == 0
+
+
 def get_kernel_params(uuid):
+    # Configured kernel parameters (default "quiet"), if plymouth installed, add splash
+    # screen parameter and then "rw".
     kernel_params = libcalamares.job.configuration.get("kernelParams", ["quiet"])
+    if have_program_in_target("plymouth"):
+        kernel_params.append("splash")
     kernel_params.append("rw")
 
+    use_systemd_naming = have_program_in_target("dracut") or (libcalamares.utils.target_env_call(["/usr/bin/grep", "-q", "^HOOKS.*systemd", "/etc/mkinitcpio.conf"]) == 0)
+
     partitions = libcalamares.globalstorage.value("partitions")
+
+    cryptdevice_params = []
     swap_uuid = ""
     swap_outer_mappername = None
     swap_outer_uuid = None
-
-    cryptdevice_params = []
-
-    have_dracut = libcalamares.utils.target_env_call(["sh", "-c", "which dracut"]) == 0
 
     # Take over swap settings:
     #  - unencrypted swap partition sets swap_uuid
@@ -154,7 +163,7 @@ def get_kernel_params(uuid):
             swap_outer_uuid = partition["luksUuid"]
 
         if partition["mountPoint"] == "/" and has_luks:
-            if have_dracut:
+            if use_systemd_naming:
                 cryptdevice_params = [f"rd.luks.uuid={partition['luksUuid']}"]
             else:
                 cryptdevice_params = [f"cryptdevice=UUID={partition['luksUuid']}:{partition['luksMapperName']}"]
@@ -187,7 +196,7 @@ def get_kernel_params(uuid):
     if swap_uuid:
         kernel_params.append("resume=UUID={!s}".format(swap_uuid))
 
-    if have_dracut and swap_outer_uuid:
+    if use_systemd_naming and swap_outer_uuid:
         kernel_params.append(f"rd.luks.uuid={swap_outer_uuid}")
 
     if swap_outer_mappername:
@@ -239,11 +248,14 @@ def create_loader(loader_path, installation_root_path):
     :param loader_path: The absolute path to the loader.conf file
     :param installation_root_path: The path to the root of the target installation
     """
-
-    # get the machine-id
-    with open(os.path.join(installation_root_path, "etc", "machine-id"), 'r') as machineid_file:
+    
+    """
+     Obsolete since default was changed to @saved from machine-id
+     
+     get the machine-id
+     with open(os.path.join(installation_root_path, "etc", "machine-id"), 'r') as machineid_file:
         machine_id = machineid_file.read().rstrip('\n')
-
+    """
     try:
         loader_entries = libcalamares.job.configuration["loaderEntries"]
     except KeyError:
@@ -251,7 +263,7 @@ def create_loader(loader_path, installation_root_path):
         loader_entries = []
         pass
 
-    lines = [f"default {machine_id}*"]
+    lines = ["default @saved"]
 
     lines.extend(loader_entries)
 
@@ -496,6 +508,28 @@ def get_kernels(installation_root_path):
                 kernel_list.append((os.path.join(rel_root, file), "default", os.path.basename(root)))
 
     return kernel_list
+
+
+def install_clr_boot_manager():
+    """
+    Installs clr-boot-manager as the bootloader for EFI systems
+    """
+    libcalamares.utils.debug("Bootloader: clr-boot-manager")
+
+    installation_root_path = libcalamares.globalstorage.value("rootMountPoint")
+    kernel_config_path = os.path.join(installation_root_path, "etc", "kernel")
+    os.makedirs(kernel_config_path, exist_ok=True)
+    cmdline_path = os.path.join(kernel_config_path, "cmdline")
+
+    # Get the kernel params
+    uuid = get_uuid()
+    kernel_params = " ".join(get_kernel_params(uuid))
+
+    # Write out the cmdline file for clr-boot-manager
+    with open(cmdline_path, "w") as cmdline_file:
+        cmdline_file.write(kernel_params)
+
+    check_target_env_call(["clr-boot-manager", "update"])
 
 
 def install_systemd_boot(efi_directory):
@@ -851,7 +885,12 @@ def prepare_bootloader(fw_type):
 
     efi_directory = libcalamares.globalstorage.value("efiSystemPartition")
 
-    if efi_boot_loader == "systemd-boot" and fw_type == "efi":
+    if efi_boot_loader == "clr-boot-manager":
+        if fw_type != "efi":
+            # Grub has to be installed first on non-EFI systems
+            install_grub(efi_directory, fw_type)
+        install_clr_boot_manager()
+    elif efi_boot_loader == "systemd-boot" and fw_type == "efi":
         install_systemd_boot(efi_directory)
     elif efi_boot_loader == "sb-shim" and fw_type == "efi":
         install_secureboot(efi_directory)

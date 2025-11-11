@@ -198,6 +198,7 @@ efiSystemPartition|partition       |bootloader, fstab|String containing the path
 extraMounts       |mount           |unpackfs|List of maps holding metadata for the temporary mountpoints used by the installer
 fullname          |users           |               |The full username (e.g. "Jane Q. Public")
 hostname          |users           |               |A string containing the hostname of the new system
+luksPassphrase    |partition       |               |Obfuscated passphrase used on luks partition
 netinstallAdd     |packagechooser  |netinstall     |Data to add to netinstall tree. Same format as netinstall.yaml
 netinstallSelect  |packagechooser  |netinstall     |List of group names to select in the netinstall tree
 packageOperations +|packagechooser, netinstall|packages|Operations to perform
@@ -334,7 +335,8 @@ description if something went wrong.
 The interface from a Python module to Calamares internals is
 found in the *libcalamares* module. This is not a standard Python
 module, and is only available inside the Calamares "runtime" for
-Python modules (it is implemented through Boost::Python in C++).
+Python modules (it is implemented in C++ and injected into the Python
+environment by Calamares).
 
 A module should start by importing the Calamares internals:
 
@@ -496,7 +498,8 @@ LC_ALL and LANG to "C" for the called command.
 
 ## Process modules
 
-Use of this kind of module is **not** recommended.
+Use of this kind of module is **not** recommended. Use *shellprocess*
+instead, which is more configurable.
 
 > Type: jobmodule
 > Interface: process
@@ -505,9 +508,14 @@ A process jobmodule runs a (single) command. The interface is *process*,
 while the module type must be *job* or *jobmodule*.
 
 The module-descriptor key *command* should have a string as value, which is
-passed to the shell -- remember to quote it properly. It is generally
+passed to the shell -- remember to quote it properly in YAML. It is generally
 recommended to use a *shellprocess* job module instead (less configuration,
-easier to have multiple instances).
+easier to have multiple instances). There is no configuration outside
+of the module-descriptor. The *command* undergoes Calamares variable-
+expansion (e.g. replacing `${ROOT}` by the target of the installation).
+See *shellprocess* documentation for details.
+
+Optional keys are *timeout* and *chroot*.
 
 `CMakeLists.txt` is *not* used for process jobmodules.
 

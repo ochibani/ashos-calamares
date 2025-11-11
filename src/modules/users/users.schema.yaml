@@ -13,6 +13,7 @@ properties:
             # User shell, should be path to /bin/sh or so
             shell: { type: string }
             forbidden_names: { type: array, items: { type: string } }
+            home_permissions: { type: string }
     # Group settings
     defaultGroups:
         type: array
@@ -41,7 +42,6 @@ properties:
         additionalProperties: false
         type: object
         properties:
-            nonempty: { type: boolean, default: true }
             minLength: { type: number }
             maxLength: { type: number }
             libpwquality: { type: array, items: { type: string } }  # Don't know what libpwquality supports
@@ -53,6 +53,7 @@ properties:
             writeHostsFile: { type: boolean, default: true }
             template: { type: string, default: "${first}-${product}" }
             forbidden_names: { type: array, items: { type: string } }
+    allowActiveDirectory: { type: boolean, default: false }
 
     # Presets
     #

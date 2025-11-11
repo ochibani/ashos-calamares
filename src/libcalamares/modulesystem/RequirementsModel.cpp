@@ -10,6 +10,7 @@
 
 #include "RequirementsModel.h"
 
+#include "compat/Mutex.h"
 #include "utils/Logger.h"
 
 namespace Calamares
@@ -18,7 +19,7 @@ namespace Calamares
 void
 RequirementsModel::clear()
 {
-    QMutexLocker l( &m_addLock );
+    Calamares::MutexLocker l( &m_addLock );
     beginResetModel();
     m_requirements.clear();
     endResetModel();
@@ -28,7 +29,7 @@ RequirementsModel::clear()
 void
 RequirementsModel::addRequirementsList( const Calamares::RequirementsList& requirements )
 {
-    QMutexLocker l( &m_addLock );
+    Calamares::MutexLocker l( &m_addLock );
 
     beginResetModel();
     for ( const auto& r : requirements )
@@ -65,7 +66,7 @@ RequirementsModel::reCheckList()
 int
 RequirementsModel::rowCount( const QModelIndex& ) const
 {
-    return m_requirements.count();
+    return static_cast< int >( m_requirements.count() );  // TODO 3.4 use qsizetype
 }
 
 QVariant

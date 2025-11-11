@@ -35,6 +35,12 @@ class Config : public QObject
                     replaceModeFilesystemChanged )
 
     Q_PROPERTY( bool allowManualPartitioning READ allowManualPartitioning CONSTANT FINAL )
+    Q_PROPERTY( bool preCheckEncryption READ preCheckEncryption CONSTANT FINAL )
+    Q_PROPERTY( bool showNotEncryptedBootMessage READ showNotEncryptedBootMessage CONSTANT FINAL )
+
+    Q_PROPERTY( bool lvmEnabled READ isLVMEnabled CONSTANT FINAL )
+
+    Q_PROPERTY( QStringList essentialMounts READ essentialMounts CONSTANT FINAL )
 
 public:
     Config( QObject* parent );
@@ -146,6 +152,16 @@ public:
     /// @brief Is manual partitioning allowed (not explicitly disabled in the config file)?
     bool allowManualPartitioning() const { return m_allowManualPartitioning; }
 
+    /** @brief Pre-check encryption checkbox.
+     *
+     * This is meaningful only if enableLuksAutomatedPartitioning is @c true.
+     * Default value is @c false
+     */
+    bool preCheckEncryption() const { return m_preCheckEncryption; }
+
+    /// @brief Show "Boot partition not encrypted" warning (not explicitly disabled in the config file)?
+    bool showNotEncryptedBootMessage() const { return m_showNotEncryptedBootMessage; }
+
     /** @brief Will @p tableType be ok?
      *
      * If no required types are specified, it's ok, otherwise the
@@ -158,6 +174,19 @@ public:
     /** @brief The configured LUKS generation (1 or 2)
      */
     LuksGeneration luksFileSystemType() const { return m_luksFileSystemType; }
+
+    /// @brief If zfs encryption should be allowed
+    bool allowZfsEncryption() const { return m_allowZfsEncryption; }
+
+    bool isLVMEnabled() const { return m_isLVMEnabled; }
+
+    /** @brief A list of names that can follow /dev/mapper/ that must not be closed
+     *
+     * These names (if any) are skipped by the ClearMountsJob.
+     * The names may contain a trailing '*' which acts as a wildcard.
+     * In any other position, '*' is interpreted literally.
+     */
+    QStringList essentialMounts() const { return m_essentialMounts; }
 
 public Q_SLOTS:
     void setInstallChoice( int );  ///< Translates a button ID or so to InstallChoice
@@ -189,8 +218,12 @@ private:
     InstallChoice m_installChoice = NoChoice;
     qreal m_requiredStorageGiB = 0.0;  // May duplicate setting in the welcome module
     QStringList m_requiredPartitionTableType;
-
+    bool m_allowZfsEncryption = true;
     bool m_allowManualPartitioning = true;
+    bool m_preCheckEncryption = false;
+    bool m_showNotEncryptedBootMessage = true;
+    bool m_isLVMEnabled = true;
+    QStringList m_essentialMounts;
 };
 
 /** @brief Given a set of swap choices, return a sensible value from it.

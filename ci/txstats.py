@@ -32,12 +32,31 @@ class TransifexGetter(object):
             raise TXError("Could not get Transifex API token")
 
         import requests
-        r = requests.get("https://api.transifex.com/organizations/calamares/projects/calamares/resources/calamares/", auth=("api", token))
+        base_url = "https://rest.api.transifex.com/resource_language_stats"
+        project_filter = "filter[project]=o:calamares:p:calamares"
+        resource_filter = "filter[resource]=o:calamares:p:calamares:r:calamares"
+        url = base_url + "?" + project_filter.replace(":", "%3A") + "&" + resource_filter.replace(":", "%3A")
+        headers = {
+            "accept": "application/vnd.api+json",
+            "authorization": "Bearer " + token
+        }
+
+        r = requests.get(url, headers=headers)
         if r.status_code != 200:
             raise TXError("Could not get Transifex data from API")
 
         j = r.json()
-        self.languages = j["stats"]
+        data = j["data"]
+
+        self.languages = dict()
+
+        for d in data:
+            translated_count = d["attributes"]["translated_strings"]
+            total_count = d["attributes"]["total_strings"]
+            language_key = d["relationships"]["language"]["data"]["id"]
+            assert language_key.startswith("l:")
+            language_key = language_key[2:]
+            self.languages[language_key] = dict(translated=dict(stringcount=translated_count, percentage=(translated_count / total_count)))
 
 
     def get_tx_credentials(self):
@@ -53,7 +72,7 @@ class TransifexGetter(object):
                 parser = configparser.ConfigParser()
                 parser.read_file(f)
 
-                return parser.get("https://www.transifex.com", "password")
+                return parser.get("https://app.transifex.com", "password")
         except IOError as e:
             return None
 
@@ -113,14 +132,14 @@ class EditingOutputter(object):
             nextmark += 1
             if l.startswith(mark_text):
                 break
-        if nextmark > mark + 100 or nextmark > len(lines) - 4:
+        if nextmark > mark + 150 or nextmark > len(lines) - 4:
             # Try to catch runaway nextmarks: we know there should
             # be four set-lines, which are unlikely to be 3 lines each;
             # similarly the CMakeLists.txt is supposed to end with
             # some boilerplate.
             #
             # However, gersemi will reformat to one-language-per-line,
-            # so we can get really long sections, that's why we use 100 as a limit.
+            # so we can get really long sections, that's why we use 150 as a limit.
             raise TXError("Could not find end of TX settings in CMakeLists.txt")
         self.post_lines = lines[nextmark:]
 
@@ -156,13 +175,13 @@ def output_langs(all_langs, outputter, label, filterfunc):
     out = " ".join(["set( _tx_%s" % label, " ".join(sorted(these_langs)), ")"])
     width = 68
     prefix = ""
-
+    trailer = f"  # {len(these_langs)} languages" # Comment at the end of the CMake line
     while len(out) > width - len(prefix):
         chunk = out[:out[:width].rfind(" ")]
         outputter.print("%s%s" % (prefix, chunk))
         out = out[len(chunk)+1:]
         prefix = "    "
-    outputter.print("%s%s" % (prefix, out))
+    outputter.print(f"{prefix}{out}{trailer}")
 
 
 def get_tx_stats(languages, outputter, verbose):

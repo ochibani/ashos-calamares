@@ -197,6 +197,8 @@ desktop_environments = [
     DesktopEnvironment('/usr/bin/sway', 'sway'),
     DesktopEnvironment('/usr/bin/ukui-session', 'ukui'),
     DesktopEnvironment('/usr/bin/cutefish-session', 'cutefish-xsession'),
+    DesktopEnvironment('/usr/bin/river', 'river'),
+    DesktopEnvironment('/usr/bin/Hyprland', 'hyprland'),
 ]
 
 
@@ -374,14 +376,30 @@ class DMgdm(DisplayManager):
         GDM exists with different executable names, so search
         for one of them and use it.
         """
-        for executable, config in (
+        candidates = (
             ( "gdm", "etc/gdm/custom.conf" ),
-            ( "gdm3", "etc/gdm3/daemon.conf" )
-        ):
+            ( "gdm3", "etc/gdm3/daemon.conf" ),
+            ( "gdm3", "etc/gdm3/custom.conf" ),
+        )
+
+        def have_executable(executable : str):
             bin_path = "{!s}/usr/bin/{!s}".format(self.root_mount_point, executable)
             sbin_path = "{!s}/usr/sbin/{!s}".format(self.root_mount_point, executable)
-            if os.path.exists(bin_path) or os.path.exists(sbin_path):
-                # Keep the found-executable name around for later
+            return os.path.exists(bin_path) or os.path.exists(sbin_path)
+
+        def have_config(config : str):
+            config_path = "{!s}/{!s}".format(self.root_mount_point, config)
+            return os.path.exists(config_path)
+
+        # Look for an existing configuration file as a hint, then
+        # keep the found-executable name and config around for later.
+        for executable, config in candidates:
+            if have_config(config) and have_executable(executable):
+                self.executable = executable
+                self.config = config
+                return True
+        for executable, config in candidates:
+            if have_executable(executable):
                 self.executable = executable
                 self.config = config
                 return True
@@ -443,7 +461,6 @@ class DMgdm(DisplayManager):
                             default_desktop_environment.desktop_file))
 
                     userfile.write("Icon=\n")
-
 
     def basic_setup(self):
         if libcalamares.utils.target_env_call(
@@ -544,6 +561,11 @@ class DMlightdm(DisplayManager):
     name = "lightdm"
     executable = "lightdm"
 
+    # Can be overridden in the .conf file. With no value it won't match any
+    # desktop file in the xgreeters directory and instead we end up picking
+    # the alphabetically first file there.
+    preferred_greeters = []
+
     def set_autologin(self, username, do_autologin, default_desktop_environment):
         # Systems with LightDM as Desktop Manager
         # Ideally, we should use configparser for the ini conf file,
@@ -593,7 +615,6 @@ class DMlightdm(DisplayManager):
                     _("LightDM config file {!s} does not exist").format(lightdm_conf_path)
                     )
 
-
     def basic_setup(self):
         libcalamares.utils.target_env_call(
             ['mkdir', '-p', '/run/lightdm']
@@ -633,40 +654,52 @@ class DMlightdm(DisplayManager):
                 )
             )
 
+    def find_preferred_greeter(self):
+        """
+        On Debian, lightdm-greeter.desktop is typically a symlink managed
+        by update-alternatives pointing to /etc/alternatives/lightdm-greeter
+        which is also a symlink to a real .desktop file back in /usr/share/xgreeters/
+
+        Returns a path *into the mounted target* of the preferred greeter -- usually
+        a .desktop file that specifies where the actual executable is. May return
+        None to indicate nothing-was-found.
+        """
+        greeters_dir = "usr/share/xgreeters"
+        greeters_target_path = os.path.join(self.root_mount_point, greeters_dir)
+        available_names = os.listdir(greeters_target_path)
+        available_names.sort()
+        desktop_names = [n for n in self.preferred_greeters if n in available_names] # Preferred ones
+        if desktop_names:
+            return desktop_names[0]
+        desktop_names = [n for n in available_names if n.endswith(".desktop")] # .. otherwise any .desktop
+        if desktop_names:
+            return desktop_names[0]
+        return None
+
     def greeter_setup(self):
-        lightdm_conf_path = os.path.join(
-            self.root_mount_point, "etc/lightdm/lightdm.conf"
-            )
+        lightdm_conf_path = os.path.join(self.root_mount_point, "etc/lightdm/lightdm.conf")
+        greeter_name = self.find_preferred_greeter()
 
-        # configure lightdm-greeter
-        greeter_path = os.path.join(
-            self.root_mount_point, "usr/share/xgreeters"
-            )
+        if greeter_name is not None:
+            greeter = os.path.basename(greeter_name)  # Follow symlinks, hope they are not absolute
+            if greeter.endswith('.desktop'):
+                greeter = greeter[:-8]  # Remove ".desktop" from end
 
-        if (os.path.exists(greeter_path)):
-            # configure first found lightdm-greeter
-            for entry in os.listdir(greeter_path):
-                if entry.endswith('.desktop'):
-                    greeter = entry.split('.')[0]
-                    libcalamares.utils.debug(
-                        "found greeter {!s}".format(greeter)
-                        )
-                    os.system(
-                        "sed -i -e \"s/^.*greeter-session=.*"
-                        "/greeter-session={!s}/\" {!s}".format(
-                            greeter,
-                            lightdm_conf_path
-                            )
-                        )
-                    libcalamares.utils.debug(
-                        "{!s} configured as greeter.".format(greeter)
-                        )
-                    break
-            else:
-                return (
-                    _("Cannot configure LightDM"),
-                    _("No LightDM greeter installed.")
-                    )
+            libcalamares.utils.debug("found greeter {!s}".format(greeter))
+            os.system(
+                "sed -i -e \"s/^.*greeter-session=.*"
+                "/greeter-session={!s}/\" {!s}".format(
+                    greeter,
+                    lightdm_conf_path
+                )
+            )
+            libcalamares.utils.debug("{!s} configured as greeter.".format(greeter))
+        else:
+            libcalamares.utils.error("No greeter found at all, preferred {!s}".format(self.preferred_greeters))
+            return (
+                _("Cannot configure LightDM"),
+                _("No LightDM greeter installed.")
+            )
 
 
 class DMslim(DisplayManager):
@@ -715,11 +748,13 @@ class DMsddm(DisplayManager):
     name = "sddm"
     executable = "sddm"
 
+    configuration_file = "/etc/sddm.conf"
+
     def set_autologin(self, username, do_autologin, default_desktop_environment):
         import configparser
 
         # Systems with Sddm as Desktop Manager
-        sddm_conf_path = os.path.join(self.root_mount_point, "etc/sddm.conf")
+        sddm_conf_path = os.path.join(self.root_mount_point, self.configuration_file.lstrip('/'))
 
         sddm_config = configparser.ConfigParser(strict=False)
         # Make everything case sensitive
@@ -762,6 +797,7 @@ class DMgreetd(DisplayManager):
     executable = "greetd"
     greeter_user = "greeter"
     greeter_group = "greetd"
+    greeter_css_location = None
     config_data = {}
 
     def os_path(self, path):
@@ -817,7 +853,7 @@ class DMgreetd(DisplayManager):
 
     def desktop_environment_setup(self, default_desktop_environment):
         with open(self.environments_path(), 'w') as envs_file:
-            envs_file.write(default_desktop_environment.desktop_file)
+            envs_file.write(default_desktop_environment.executable)
             envs_file.write("\n")
 
     def greeter_setup(self):
@@ -829,6 +865,8 @@ class DMgreetd(DisplayManager):
         de_command = default_desktop_environment.executable
         if os.path.exists(self.os_path("usr/bin/gtkgreet")) and os.path.exists(self.os_path("usr/bin/cage")):
             self.config_data['default_session']['command'] = "cage -d -s -- gtkgreet"
+            if self.greeter_css_location:
+                self.config_data['default_session']['command'] += f" -s {self.greeter_css_location}"
         elif os.path.exists(self.os_path("usr/bin/tuigreet")):
             tuigreet_base_cmd = "tuigreet --remember --time --issue --asterisks --cmd "
             self.config_data['default_session']['command'] = tuigreet_base_cmd + de_command

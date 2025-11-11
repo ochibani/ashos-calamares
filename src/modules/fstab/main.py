@@ -14,6 +14,7 @@
 
 import os
 import re
+import copy
 
 import libcalamares
 
@@ -150,8 +151,12 @@ class FstabGenerator(object):
         if not mapper_name or not luks_uuid:
             return None
 
-        password = "/crypto_keyfile.bin"
         crypttab_options = self.crypttab_options
+        # Make sure to not use missing keyfile
+        if os.path.isfile(os.path.join(self.root_mount_point, "crypto_keyfile.bin")):
+            password = "/crypto_keyfile.bin"
+        else:
+            password = "none"
 
         # Set crypttab password for partition to none and remove crypttab options
         # if root partition was not encrypted
@@ -201,7 +206,7 @@ class FstabGenerator(object):
                     # so all subvolumes here should be safe to add to fstab
                     btrfs_subvolumes = libcalamares.globalstorage.value("btrfsSubvolumes")
                     for s in btrfs_subvolumes:
-                        mount_entry = partition
+                        mount_entry = copy.deepcopy(partition)
                         mount_entry["mountPoint"] = s["mountPoint"]
                         mount_entry["subvol"] = s["subvolume"]
                         dct = self.generate_fstab_line_info(mount_entry)

@@ -95,13 +95,17 @@ def run():
     libcalamares.utils.debug("Current filesystem: {!s}".format(curr_filesystem))
     is_root_on_zfs = (curr_filesystem == "zfs\n")
     is_root_on_btrfs = (curr_filesystem == "btrfs\n")
+    is_root_on_bcachefs = (curr_filesystem == "bcachefs\n")
 
     if is_root_on_zfs:
         libcalamares.utils.debug("Root on ZFS")
-        base_packages += ["zfs-utils", "linux-cachyos-zfs"]
+        base_packages += ["zfs-utils", "linux-cachyos-zfs", "linux-cachyos-lts-zfs"]
     elif is_root_on_btrfs:
         libcalamares.utils.debug("Root on BTRFS")
-        base_packages += ["snapper", "btrfs-assistant-git"]
+        base_packages += ["snapper", "btrfs-assistant","grub-btrfs-support"]
+    elif is_root_on_bcachefs:
+        libcalamares.utils.debug("Root on BCACHEFS")
+        base_packages += ["bcachefs-tools"]
 
     # run the pacstrap
     pacstrap_command = ["/etc/calamares/scripts/pacstrap_calamares", "-c", root_mount_point] + base_packages

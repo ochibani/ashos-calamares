@@ -3,6 +3,7 @@
  *   SPDX-FileCopyrightText: 2014-2016 Teo Mrnjavac <teo@kde.org>
  *   SPDX-FileCopyrightText: 2018-2019 Adriaan de Groot <groot@kde.org>
  *   SPDX-FileCopyrightText: 2019 Collabora Ltd
+ *   SPDX-FileCopyrightText: 2023 Evan James <dalto@fastmail.com>
  *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is Free Software: see the License-Identifier above.
@@ -135,6 +136,7 @@ private:
     // Translations support
     void updateSwapChoicesTr();
     void updateChoiceButtonsTr();
+    void updateActionDescriptionsTr();
 
     Config* m_config;
     bool m_nextEnabled;
@@ -167,8 +169,11 @@ private:
     QPointer< QComboBox > m_efiComboBox;
 
     int m_lastSelectedDeviceIndex = -1;
+    int m_osproberEntriesCount = -1;
+    QString m_osproberOneEntryName;
 
     bool m_enableEncryptionWidget = false;
+    bool m_preCheckActivated = false;
 
     QMutex m_coreMutex;
 };
