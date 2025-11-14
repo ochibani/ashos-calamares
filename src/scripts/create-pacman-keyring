@@ -5,10 +5,6 @@ exec 2>&1
 
 pacman-key --init
 
-# Update cachyos-keyring first since archlinux-keyring is taken from cachyos
-# repo. Also try to make multiple attempts in case of failures due to unsynced
-# mirrors.
-for ((i=0; i<5; i++)); do pacman -Sy --noconfirm cachyos-keyring && break; done
 for ((i=0; i<5; i++)); do pacman -Sy --noconfirm archlinux-keyring && break; done
 
 pacman-key --populate
