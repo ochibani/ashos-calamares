@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# Unmount mount points
+umount /boot
+umount /etc
+umount /var
+
+# Mount boot subvolume
+mount "${ROOT}" -o "subvol=@boot_linux,compress=zstd,noatime" /.snapshots/boot/boot-deploy
+cp -r --reflink=auto /.snapshots/boot/boot-deploy/* /boot/
+
+# Mount etc subvolume
+mount "${ROOT}" -o "subvol=@etc_linux,compress=zstd,noatime" /.snapshots/etc/etc-deploy
+cp -r --reflink=auto /.snapshots/etc/etc-deploy/* /etc/
+
+# Mount var subvolume
+mount "${ROOT}" -o "subvol=@var_linux,compress=zstd,noatime" /.snapshots/var/var-deploy
+cp -r --reflink=auto /.snapshots/var/var-deploy/* /var/
+
+# Copy base snapshots into deploy root
+cp -r --reflink=auto /.snapshots/boot/boot-0/* /.snapshots/rootfs/snapshot-deploy/boot/
+cp -r --reflink=auto /.snapshots/etc/etc-0/* /.snapshots/rootfs/snapshot-deploy/etc/
+cp -r --reflink=auto /.snapshots/var/var-0/* /.snapshots/rootfs/snapshot-deploy/var/

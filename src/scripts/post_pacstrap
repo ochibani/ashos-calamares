@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+# Update HoldPkg in pacman.conf
+packages=$(pacman -Qetq | tr '\n' ' ')
+sed -i "s|^HoldPkg.*$|HoldPkg      = $packages|g" /etc/pacman.conf
+
+# Create AUR User
+useradd --system --no-create-home --shell /usr/bin/nologin aur  
+
+# Install ash-git
+su aur -c 'paru -Sy ash-git --noconfirm'
+
+# Ash configurations
+chmod 700 /.snapshots/ash/root
+chmod 1777 /.snapshots/ash/tmp
+mkdir -p /usr/share/ash
+chmod 755 /usr/share/ash
+echo '0' > /usr/share/ash/snap
+mkdir -p /etc/ash
+chmod 755 /etc/ash
+
+cat > /etc/ash/ash.conf << EOF
+mutable_dirs::
+mutable_dirs_shared::var
+aur::False
+EOF
+chmod 644 /etc/ash/ash.conf
+
+echo '0' > /.snapshots/ash/upstate
+date >> /.snapshots/ash/upstate
+
+touch /etc/ash/profile
+chmod 644 /etc/ash/profile
+packages_lines=$(echo "$packages" | tr ' ' '\n')
+cat > /etc/ash/profile << EOF
+[system-packages]
+$packages_lines
+[profile-packages]
+[enable-services]
+[disable-services]
+[install-commands]
+EOF
+
+mkdir -p /.snapshots/ash/snapshots
+echo '' > /.snapshots/ash/deploy-tmp
+ln -sf /.snapshots/ash /var/lib/ash

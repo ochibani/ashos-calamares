@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+# Create base directories under /
+for dir in tmp root; do
+    mkdir -p "/$dir"
+done
+
+# Create directories under /.snapshots
+for dir in ash boot etc var root rootfs tmp; do
+    mkdir -p "/.snapshots/$dir"
+done
+
+# Create necessary subdirectories to prevent boot errors in some distros
+for dir in root tmp; do
+    mkdir -p "/.snapshots/ash/$dir"
+done   

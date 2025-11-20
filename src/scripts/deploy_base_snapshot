@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+# Find btrfs command
+BTRFS=$(command -v btrfs || echo "btrfs")
+
+# Create initial snapshot of root
+$BTRFS subvolume snapshot / /.snapshots/rootfs/snapshot-chr0
+
+# Copy boot, etc, var using reflinks
+cp -r --reflink=auto /boot/* /.snapshots/rootfs/snapshot-chr0/boot
+cp -r --reflink=auto /etc/* /.snapshots/rootfs/snapshot-chr0/etc
+cp -r --reflink=auto /var/* /.snapshots/rootfs/snapshot-chr0/var
+
+# Create readonly snapshot (mutable if needed, remove -r)
+$BTRFS subvolume snapshot -r /.snapshots/rootfs/snapshot-chr0 /.snapshots/rootfs/snapshot-0
+
+# Create deploy subvolumes for boot, etc, var
+$BTRFS subvolume create /.snapshots/boot/boot-deploy
+$BTRFS subvolume create /.snapshots/etc/etc-deploy
+$BTRFS subvolume create /.snapshots/var/var-deploy
+
+# Copy data into deploy subvolumes with reflinks
+cp -r --reflink=auto /boot/* /.snapshots/boot/boot-deploy
+cp -r --reflink=auto /etc/* /.snapshots/etc/etc-deploy
+cp -r --reflink=auto /var/* /.snapshots/var/var-deploy
+
+# Create final readonly snapshots
+$BTRFS subvolume snapshot -r /.snapshots/boot/boot-deploy /.snapshots/boot/boot-0
+$BTRFS subvolume snapshot -r /.snapshots/etc/etc-deploy /.snapshots/etc/etc-0
+$BTRFS subvolume snapshot -r /.snapshots/var/var-deploy /.snapshots/var/var-0
+
+# Create deploy snapshot from base
+$BTRFS subvolume snapshot /.snapshots/rootfs/snapshot-0 /.snapshots/rootfs/snapshot-deploy
+
+# Clean up temporary snapshot
+$BTRFS subvolume delete /.snapshots/rootfs/snapshot-chr0
+
+# Set default subvolume
+$BTRFS subvolume set-default /.snapshots/rootfs/snapshot-deploy
+
+# Copy root and tmp
+cp -r /root/* /.snapshots/root/
+cp -r /tmp/* /.snapshots/tmp/
+
+# Clear root and tmp (assuming rmrf_star is a function to remove all contents)
+rm -rf /root/*
+rm -rf /tmp/*
