@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 echo "Updating rate-mirrors"
 sudo pacman -Sy --noconfirm rate-mirrors
-sudo rate-mirrors arch
+sudo -u ${USER} rate-mirrors arch
