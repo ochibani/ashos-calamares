@@ -2,15 +2,15 @@
 
 # Create base directories under /
 for dir in tmp root; do
-    mkdir -p "/$dir"
+    mkdir -p "${ROOT}/$dir"
 done
 
 # Create directories under /.snapshots
 for dir in ash boot etc var root rootfs tmp; do
-    mkdir -p "/.snapshots/$dir"
+    mkdir -p "${ROOT}/.snapshots/$dir"
 done
 
 # Create necessary subdirectories to prevent boot errors in some distros
 for dir in root tmp; do
-    mkdir -p "/.snapshots/ash/$dir"
+    mkdir -p "${ROOT}/.snapshots/ash/$dir"
 done   
