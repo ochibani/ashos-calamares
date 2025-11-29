@@ -100,9 +100,9 @@ def run():
     if is_root_on_zfs:
         libcalamares.utils.debug("Root on ZFS")
         base_packages += ["zfs-utils", "zfs-linux", "zfs-linux-lts"]
-    elif is_root_on_btrfs:
-        libcalamares.utils.debug("Root on BTRFS")
-        base_packages += ["snapper", "btrfs-assistant","grub-btrfs-support"]
+    #elif is_root_on_btrfs:
+        #libcalamares.utils.debug("Root on BTRFS")
+        #base_packages += ["snapper", "btrfs-assistant","grub-btrfs-support"]
     elif is_root_on_bcachefs:
         libcalamares.utils.debug("Root on BCACHEFS")
         base_packages += ["bcachefs-tools"]
