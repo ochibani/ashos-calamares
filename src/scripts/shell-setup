@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 user="$1"
-for shell in 'fish' 'zsh'; do
+for shell in 'bash' 'fish' 'zsh'; do
     if [ -e "/bin/$shell" ]; then
         chsh -s "/bin/${shell}" "$user" && break
     fi
