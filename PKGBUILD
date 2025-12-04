@@ -33,11 +33,11 @@ _pkgsrc="$_pkgname"
 source=("$_pkgsrc"::"git+$url.git")
 sha256sums=('SKIP')
 
-pkgver() {
-  cd "$_pkgsrc"
-  git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
-    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
-}
+#pkgver() {
+#  cd "$_pkgsrc"
+#  git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
+#    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
+#}
 
 build() {
   local _skip_modules=(
