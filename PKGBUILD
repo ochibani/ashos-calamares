@@ -64,7 +64,8 @@ build() {
     -DBUILD_TESTING=OFF
     -Wno-dev
   )
-
+  
+  cd ${srcdir}/${_pkgname}
   cmake "${_cmake_options[@]}"
   cmake --build build
 }
