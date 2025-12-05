@@ -70,5 +70,16 @@ build() {
 }
 
 package() {
-  DESTDIR="$pkgdir" cmake --install build
+    cd ${srcdir}/calamares/build
+    DESTDIR="${pkgdir}" cmake --build . --target install
+
+    cp ${srcdir}/calamares/settings_offline.conf "$pkgdir/usr/share/calamares/settings_offline.conf"
+    cp ${srcdir}/calamares/settings_online.conf "$pkgdir/usr/share/calamares/settings_online.conf"
+    cp ${srcdir}/calamares/settings_online.conf "$pkgdir/usr/share/calamares/settings.conf"
+    local _destdir=etc/calamares
+    install -dm755 $pkgdir/$_destdir
+    install -dm755 $pkgdir/$_destdir/modules
+    cp -rf ${srcdir}/calamares/src/modules/*/*.conf "$pkgdir/etc/calamares/modules"
+    cp -rf ${srcdir}/calamares/src/scripts "$pkgdir/etc/calamares"
+    cp -rf ${srcdir}/calamares/src/images "$pkgdir/etc/calamares"
 }
