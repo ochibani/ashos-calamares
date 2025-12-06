@@ -76,7 +76,7 @@ package() {
 
     cp ${srcdir}/${_pkgname}/settings_offline.conf "$pkgdir/usr/share/calamares/settings_offline.conf"
     cp ${srcdir}/${_pkgname}/settings_online.conf "$pkgdir/usr/share/calamares/settings_online.conf"
-    cp ${srcdir}/${_pkgname}/settings_online.conf "$pkgdir/usr/share/calamares/settings.conf"
+    cp ${srcdir}/${_pkgname}/settings.conf "$pkgdir/usr/share/calamares/settings.conf"
     local _destdir=etc/calamares
     install -dm755 $pkgdir/$_destdir
     install -dm755 $pkgdir/$_destdir/modules
