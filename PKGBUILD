@@ -65,13 +65,13 @@ build() {
     -Wno-dev
   )
   
-  cd ${srcdir}/${_pkgname}
+  cd ${srcdir}
   cmake "${_cmake_options[@]}"
   cmake --build build
 }
 
 package() {
-    cd ${srcdir}/${_pkgname}/build
+    cd ${srcdir}/build
     DESTDIR="${pkgdir}" cmake --build . --target install
 
     cp ${srcdir}/${_pkgname}/settings_offline.conf "$pkgdir/usr/share/calamares/settings_offline.conf"
