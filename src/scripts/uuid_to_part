@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+ROOT="$1"
 
 # Get the device mounted at the root partition
 DEVICE=$(findmnt -n -o SOURCE ${ROOT})
