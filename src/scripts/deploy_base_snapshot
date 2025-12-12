@@ -42,6 +42,6 @@ $BTRFS subvolume set-default /.snapshots/rootfs/snapshot-deploy
 cp -r /root/* /.snapshots/root/
 cp -r /tmp/* /.snapshots/tmp/
 
-# Clear root and tmp (assuming rmrf_star is a function to remove all contents)
+# Clear root and tmp
 rm -rf /root/*
 rm -rf /tmp/*
