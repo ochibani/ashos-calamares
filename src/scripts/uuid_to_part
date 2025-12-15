@@ -7,4 +7,4 @@ DEVICE=$(findmnt -n -o SOURCE ${ROOT})
 # Get the UUID of that device
 UUID=$(blkid -s UUID -o value "$DEVICE")
 
-echo "$UUID" > ${ROOT}.snapshots/ash/part
+echo "$UUID" > ${ROOT}/.snapshots/ash/part
