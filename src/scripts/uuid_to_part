@@ -2,7 +2,7 @@
 ROOT="$1"
 
 # Get the device mounted at the root partition
-DEVICE=$(findmnt -n -o SOURCE ${ROOT})
+DEVICE=$(findmnt -n -v -o SOURCE ${ROOT})
 
 # Get the UUID of that device
 UUID=$(blkid -s UUID -o value "$DEVICE")
