@@ -4,9 +4,9 @@ packages=$(pacman -Qetq | tr '\n' ' ')
 sed -i "s|^HoldPkg.*$|HoldPkg      = $packages|g" /etc/pacman.conf
 
 # Create AUR User
-sudo useradd --system --no-create-home --shell /bin/bash aur
-echo 'aur ALL=(ALL:ALL) NOPASSWD: ALL' | sudo tee /etc/sudoers.d/aur
-sudo chmod 0440 /etc/sudoers.d/aur   
+useradd --system --no-create-home --shell /bin/bash aur
+echo 'aur ALL=(ALL:ALL) NOPASSWD: ALL' | tee /etc/sudoers.d/aur
+chmod 0440 /etc/sudoers.d/aur   
 
 # Install ash-git
 su aur -c 'paru -Sy ash-git --noconfirm'
