@@ -8,9 +8,6 @@ useradd --system --no-create-home --shell /bin/bash aur
 echo 'aur ALL=(ALL:ALL) NOPASSWD: ALL' | tee /etc/sudoers.d/aur
 chmod 0440 /etc/sudoers.d/aur   
 
-# Install ash-git
-su aur -c 'paru -Sy ash-git --noconfirm'
-
 # Ash configurations
 chmod 700 /.snapshots/ash/root
 chmod 1777 /.snapshots/ash/tmp
