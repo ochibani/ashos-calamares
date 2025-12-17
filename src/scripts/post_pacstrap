@@ -4,7 +4,7 @@ packages=$(pacman -Qetq | tr '\n' ' ')
 sed -i "s|^HoldPkg.*$|HoldPkg      = $packages|g" /etc/pacman.conf
 
 # Create AUR User
-useradd --system --no-create-home --shell /bin/bash aur
+useradd --no-create-home -u 999 --shell /bin/bash aur 
 echo 'aur ALL=(ALL:ALL) NOPASSWD: ALL' | tee /etc/sudoers.d/aur
 chmod 0440 /etc/sudoers.d/aur   
 
