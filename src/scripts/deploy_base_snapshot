@@ -37,11 +37,3 @@ $BTRFS subvolume delete /.snapshots/rootfs/snapshot-chr0
 
 # Set default subvolume
 $BTRFS subvolume set-default /.snapshots/rootfs/snapshot-deploy
-
-# Copy root and tmp
-cp -r /root/* /.snapshots/root/
-cp -r /tmp/* /.snapshots/tmp/
-
-# Clear root and tmp
-rm -rf /root/*
-rm -rf /tmp/*
