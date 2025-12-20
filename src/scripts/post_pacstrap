@@ -39,6 +39,8 @@ $packages_lines
 [install-commands]
 EOF
 
+mkdir -p /boot/grub/BAK
+
 mkdir -p /.snapshots/ash/snapshots
 echo '' > /.snapshots/ash/deploy-tmp
 ln -sf /.snapshots/ash /var/lib/ash
