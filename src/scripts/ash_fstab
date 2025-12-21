@@ -1,1 +1,8 @@
+#!/usr/bin/env bash
 
+# Change fstab
+sed -i '0,/@_linux/ s|@_linux|@.snapshots_linux/rootfs/snapshot-deploy|' /etc/fstab
+sed -i '0,/@etc_linux/ s|@etc_linux|@.snapshots_linux/etc/etc-deploy|' /etc/fstab
+sed -i '0,/@var_linux/ s|@var_linux|@.snapshots_linux/var/var-deploy|' /etc/fstab
+echo '/.snapshots/ash/root /root none bind 0 0' >> /path/to/file
+echo '/.snapshots/ash/tmp /tmp none bind 0 0' >> /path/to/file   
