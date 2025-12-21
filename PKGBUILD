@@ -1,7 +1,7 @@
 # Maintainer:
 # Contributor:
 
-_pkgname="ashso-calamares"
+_pkgname="ashos-calamares"
 pkgname="$_pkgname-git"
 pkgver=3.4.0.r20.gc5c9b79
 pkgrel=1
