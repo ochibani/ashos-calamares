@@ -3,6 +3,9 @@
 packages=$(pacman -Qetq | tr '\n' ' ')
 sed -i "s|^HoldPkg.*$|HoldPkg      = $packages|g" /etc/pacman.conf
 
+# Add boot backup directory
+mkdir -p /boot/grub/BAK
+
 # Create AUR User
 useradd -m -s /bin/bash aur 
 echo 'aur ALL=(ALL:ALL) NOPASSWD: ALL' | tee /etc/sudoers.d/aur
@@ -26,6 +29,7 @@ chmod 644 /etc/ash/ash.conf
 
 echo '0' > /.snapshots/ash/upstate
 date >> /.snapshots/ash/upstate
+echo "{\\'name\\': \\'root\\', \\'children\\': [{\\'name\\': \\'0\\'}]}" > /.snapshots/ash/fstree")
 
 touch /etc/ash/profile
 chmod 644 /etc/ash/profile
@@ -38,8 +42,6 @@ $packages_lines
 [disable-services]
 [install-commands]
 EOF
-
-mkdir -p /boot/grub/BAK
 
 mkdir -p /.snapshots/ash/snapshots
 echo '' > /.snapshots/ash/deploy-tmp
