@@ -11,7 +11,7 @@ cp -r --reflink=auto /boot/* /.snapshots/rootfs/snapshot-chr0/boot
 cp -r --reflink=auto /etc/* /.snapshots/rootfs/snapshot-chr0/etc
 cp -r --reflink=auto /var/* /.snapshots/rootfs/snapshot-chr0/var
 
-# Create readonly snapshot (mutable if needed, remove -r)
+# Create readonly snapshot
 $BTRFS subvolume snapshot -r /.snapshots/rootfs/snapshot-chr0 /.snapshots/rootfs/snapshot-0
 
 # Create deploy subvolumes for boot, etc, var
