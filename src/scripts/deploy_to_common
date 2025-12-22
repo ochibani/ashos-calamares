@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+ROOT="$1"
+
 # Unmount mount points
 umount -lv ${ROOT}/boot
 umount -lv ${ROOT}/etc
