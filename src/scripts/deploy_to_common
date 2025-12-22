@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # Unmount mount points
-umount ${ROOT}/boot
-umount ${ROOT}/etc
-umount ${ROOT}/var
+umount -lv ${ROOT}/boot
+umount -lv ${ROOT}/etc
+umount -lv ${ROOT}/var
 
 # Mount boot subvolume
 mount "${ROOT}" -o "subvol=@boot_linux,compress=zstd,noatime" ${ROOT}/.snapshots/boot/boot-deploy
