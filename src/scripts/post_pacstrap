@@ -29,7 +29,7 @@ chmod 644 /etc/ash/ash.conf
 
 echo '0' > /.snapshots/ash/upstate
 date >> /.snapshots/ash/upstate
-echo "{\\'name\\': \\'root\\', \\'children\\': [{\\'name\\': \\'0\\'}]}" > /.snapshots/ash/fstree
+echo "{'name': 'root', 'children': [{'name': '0'}]}" > /.snapshots/ash/fstree
 
 touch /etc/ash/profile
 chmod 644 /etc/ash/profile
