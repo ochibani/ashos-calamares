@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Update HoldPkg in pacman.conf
 packages=$(pacman -Qetq | tr '\n' ' ')
-sed -i "s|^HoldPkg.*$|HoldPkg      = $packages|g" /etc/pacman.conf
+sed -i "s|^HoldPkg.*$|HoldPkg      = ash-git $packages|g" /etc/pacman.conf
 
 # Add boot backup directory
 mkdir -p /boot/grub/BAK
