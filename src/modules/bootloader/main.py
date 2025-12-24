@@ -178,6 +178,8 @@ def get_kernel_params(uuid):
             if btrfs_root_subvolume:
                 #kernel_params.append("rootflags=subvol=" + btrfs_root_subvolume)
                 # for AshOS only
+                kernel_params.append("linux  /@.snapshot_linux/rootfs/snapshot-deploy/boot/vmlinuz-linux")
+                kernel_params.append("initrd  /@.snapshot_linux/rootfs/snapshot-deploy/boot/initramfs-linux.img")
                 kernel_params.append("rootflags=subvol=@.snapshot_linux/rootfs/snapshot-deploy")
 
         # zfs needs to be told the location of the root dataset
