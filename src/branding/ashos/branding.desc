@@ -127,7 +127,7 @@ strings:
     shortVersion:        2025-11-03
     versionedName:       AshOS
     shortVersionedName:  AshOS
-    bootloaderEntryName: AshOS
+    bootloaderEntryName: AshOS snapshot 0
 
 # These images are loaded from the branding module directory.
 #
