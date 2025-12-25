@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -e
 
 # Change fstab
 sed -i '0,/@_linux/ s|@_linux|@.snapshots_linux/rootfs/snapshot-deploy|' /etc/fstab
