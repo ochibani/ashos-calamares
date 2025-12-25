@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+set -e
+
 # Update HoldPkg in pacman.conf
 packages=$(pacman -Qetq | tr '\n' ' ')
 sed -i "s|^HoldPkg.*$|HoldPkg      = ash-git $packages|g" /etc/pacman.conf
