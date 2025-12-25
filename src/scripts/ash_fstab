@@ -7,10 +7,4 @@ sed -i '0,/@boot_linux/ s|@boot_linux|@.snapshots_linux/boot/boot-deploy|' /etc/
 sed -i '0,/@etc_linux/ s|@etc_linux|@.snapshots_linux/etc/etc-deploy|' /etc/fstab
 sed -i '0,/@var_linux/ s|@var_linux|@.snapshots_linux/var/var-deploy|' /etc/fstab
 echo '/.snapshots/ash/root /root none bind 0 0' >> /etc/fstab
-echo '/.snapshots/ash/tmp /tmp none bind 0 0' >> /etc/fstab   
-
-# Grub update
-sed -i "s/menuentry '\(.*\) Linux'/menuentry '\1'/" /boot/grub/grub.cfg
-sed -i '0,/@boot_linux/vmlinuz-linux s|/@boot_linux/vmlinuz-linux|/@.snapshots_linux/rootfs/snapshot-deploy/boot/vmlinuz-linux|' /boot/grub/grub.cfg
-sed -i '0,/@boot_linux/initramfs-linux.img s|/@boot_linux/initramfs-linux.img|/@.snapshots_linux/rootfs/snapshot-deploy/boot/initramfs-linux.img|' /boot/grub/grub.cfg
-grub-mkconfig -o /boot/grub/grub.cfg
+echo '/.snapshots/ash/tmp /tmp none bind 0 0' >> /etc/fstab
