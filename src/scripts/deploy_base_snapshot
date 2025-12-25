@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -e
 
 # Find btrfs command
 BTRFS=$(command -v btrfs || echo "btrfs")
