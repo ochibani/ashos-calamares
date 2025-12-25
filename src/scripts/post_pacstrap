@@ -48,9 +48,3 @@ EOF
 mkdir -p /.snapshots/ash/snapshots
 echo '' > /.snapshots/ash/deploy-tmp
 ln -sf /.snapshots/ash /var/lib/ash
-
-# Grub update
-sed -i "s/menuentry '\(.*\) Linux'/menuentry '\1'/" /boot/grub/grub.cfg
-sed -i '0,/@boot_linux/vmlinuz-linux s|/@boot_linux/vmlinuz-linux|/@.snapshots_linux/rootfs/snapshot-deploy/boot/vmlinuz-linux|' /boot/grub/grub.cfg
-sed -i '0,/@boot_linux/initramfs-linux.img s|/@boot_linux/initramfs-linux.img|/@.snapshots_linux/rootfs/snapshot-deploy/boot/initramfs-linux.img|' /boot/grub/grub.cfg
-grub-mkconfig -o /boot/grub/grub.cfg
