@@ -15,6 +15,7 @@ sed -i '/BOOT_DEVICE=/a DEVICE='$DEVICE'' /etc/calamares/scripts/deploy_to_commo
 
 # Change fstab
 sed -i '0,/@_linux/ s|@_linux|@.snapshots_linux/rootfs/snapshot-deploy|' /etc/fstab
+sed -i '0,/@boot_linux/ s|@boot_linux|@.snapshots_linux/boot/boot-deploy|' /etc/fstab
 sed -i '0,/@etc_linux/ s|@etc_linux|@.snapshots_linux/etc/etc-deploy|' /etc/fstab
 sed -i '0,/@var_linux/ s|@var_linux|@.snapshots_linux/var/var-deploy|' /etc/fstab
 echo '/.snapshots/ash/root /root none bind 0 0' >> /etc/fstab
