@@ -5,13 +5,13 @@ set -e
 UUID_LINE=$(grep '@boot_linux' /etc/fstab)
 UUID=$(echo "$UUID_LINE" | awk -F'=' '{print $2}' | awk '{print $1}')
 BOOT_DEVICE=$(findfs UUID="$UUID")
-sed -i '\/ROOT=\/a BOOT_DEVICE="$BOOT_DEVICE"' /etc/calamares/scripts/deploy_to_common
+sed -i "/ROOT=/a BOOT_DEVICE=\"\$BOOT_DEVICE\"" /etc/calamares/scripts/deploy_to_common   
 
 # Get root partition
 UUID_LINE=$(grep '@_linux' /etc/fstab)
 UUID=$(echo "$UUID_LINE" | awk -F'=' '{print $2}' | awk '{print $1}')   
 DEVICE=$(findfs UUID="$UUID")
-sed -i '\/BOOT_DEVICE=\/a DEVICE="$DEVICE"' /etc/calamares/scripts/deploy_to_common
+sed -i "/BOOT_DEVICE=/a DEVICE=\"\$DEVICE\"" /etc/calamares/scripts/deploy_to_common   
 
 # Change fstab
 sed -i '0,/@_linux/ s|@_linux|@.snapshots_linux/rootfs/snapshot-deploy|' /etc/fstab
