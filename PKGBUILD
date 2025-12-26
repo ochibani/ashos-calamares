@@ -84,4 +84,6 @@ package() {
     cp -rf ${srcdir}/${_pkgname}/src/modules/*/*.conf "$pkgdir/etc/calamares/modules"
     cp -rf ${srcdir}/${_pkgname}/src/scripts "$pkgdir/etc/calamares"
     cp -rf ${srcdir}/${_pkgname}/src/images "$pkgdir/etc/calamares"
+    cp -rf ${srcdir}/${_pkgname}/bin "$pkgdir/usr/local/bin"
+    cp ${srcdir}/${_pkgname}/services/firstboot-clone.service "$pkgdir/etc/systemd/system/firstboot-clone.service"
 }
