@@ -17,6 +17,7 @@ depends=(
   'qt6-declarative'
   'qt6-svg'
   'yaml-cpp'
+  'rate-mirrors'
 )
 makedepends=(
   'extra-cmake-modules'
