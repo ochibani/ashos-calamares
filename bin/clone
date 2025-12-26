@@ -1,0 +1,16 @@
+#!/bin/bash
+set -e
+
+# Clone base snapshot
+ash clone
+ash deploy -s 1
+
+# Disable system unit
+systemctl disable firstboot-clone.service
+rm /etc/systemd/system/firstboot-clone.service
+
+# Remove script
+rm /usr/local/bin/clone
+
+# Reboot
+systemctl reboot
