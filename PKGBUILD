@@ -18,6 +18,8 @@ depends=(
   'qt6-svg'
   'yaml-cpp'
   'rate-mirrors'
+  'sed'
+  'gawk'
 )
 makedepends=(
   'extra-cmake-modules'
