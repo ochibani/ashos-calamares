@@ -3,15 +3,15 @@ set -e
 
 # Get boot partition
 UUID_LINE=$(grep '@boot_linux' /etc/fstab)
-UUID=$(sed -n 's/.*UUID=\([^ ]*\).*/\1/p' <<< $UUID_LINE)
+UUID=$(sed -n "s/.*UUID=\([^ ]*\).*/\1/p" <<< $UUID_LINE)
 BOOT_DEVICE=$(findfs UUID=$UUID)
-sed -i '/ROOT=/a BOOT_DEVICE='$DEVICE'' /etc/calamares/scripts/deploy_to_common
+sed -i "/ROOT=/a BOOT_DEVICE='$DEVICE'" /etc/calamares/scripts/deploy_to_common
 
 # Get root partition
 UUID_LINE=$(grep '@_linux' /etc/fstab)
-UUID=$(sed -n 's/.*UUID=\([^ ]*\).*/\1/p' <<< $UUID_LINE)
+UUID=$(sed -n "s/.*UUID=\([^ ]*\).*/\1/p" <<< $UUID_LINE)
 DEVICE=$(findfs UUID=$UUID)
-sed -i '/BOOT_DEVICE=/a DEVICE='$DEVICE'' /etc/calamares/scripts/deploy_to_common
+sed -i "/BOOT_DEVICE=/a DEVICE='$DEVICE'" /etc/calamares/scripts/deploy_to_common
 
 # Change fstab
 sed -i '0,/@_linux/ s|@_linux|@.snapshots_linux/rootfs/snapshot-deploy|' /etc/fstab
