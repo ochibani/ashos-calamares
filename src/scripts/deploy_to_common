@@ -8,7 +8,7 @@ umount -lv ${ROOT}/etc
 umount -lv ${ROOT}/var
 
 # Mount boot subvolume
-mount "${ROOT}" -t btrfs -o "subvol=@boot_linux,compress=zstd,noatime" ${ROOT}/.snapshots/boot/boot-deploy
+mount "${BOOT_DEVICE}" -t btrfs -o "subvol=@boot_linux,compress=zstd,noatime" ${ROOT}/.snapshots/boot/boot-deploy
 cp -r --reflink=auto ${ROOT}/.snapshots/boot/boot-deploy/* ${ROOT}/boot/
 
 # Mount etc subvolume
