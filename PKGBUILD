@@ -20,6 +20,7 @@ depends=(
   'rate-mirrors'
   'sed'
   'gawk'
+  'util-linux'
 )
 makedepends=(
   'extra-cmake-modules'
