@@ -13,9 +13,9 @@ UUID=$(echo "$UUID_LINE" | awk -F'=' '{print $2}' | awk '{print $1}')
 DEVICE=$(findfs UUID="$UUID")
 
 # Unmount mount points
-umount -lv "${ROOT}"/boot
-umount -lv "${ROOT}"/etc
-umount -lv "${ROOT}"/var
+umount "-lv" "${ROOT}"/boot
+umount "-lv" "${ROOT}"/etc
+umount "-lv" "${ROOT}"/var
 
 # Mount boot subvolume
 mount "${BOOT_DEVICE}" -t "btrfs" -o "subvol=@boot_linux,compress=zstd,noatime" "${ROOT}"/.snapshots/boot/boot-deploy
