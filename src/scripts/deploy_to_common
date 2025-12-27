@@ -2,6 +2,16 @@
 set -e
 ROOT="$1"
 
+# Get boot partition
+UUID_LINE=$(grep '@boot_linux' ${ROOT}/etc/fstab)
+UUID=$(echo "$UUID_LINE" | awk -F'=' '{print $2}' | awk '{print $1}')
+BOOT_DEVICE=$(findfs UUID="$UUID")
+
+# Get root partition
+UUID_LINE=$(grep '@.snapshots_linux' ${ROOT}/etc/fstab)
+UUID=$(echo "$UUID_LINE" | awk -F'=' '{print $2}' | awk '{print $1}')   
+DEVICE=$(findfs UUID="$UUID")
+
 # Unmount mount points
 umount -lv ${ROOT}/boot
 umount -lv ${ROOT}/etc
