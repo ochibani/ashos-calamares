@@ -3,33 +3,33 @@ set -e
 ROOT="$1"
 
 # Get boot partition
-UUID_LINE=$(grep '@boot_linux' ${ROOT}/etc/fstab)
+UUID_LINE=$(grep '@boot_linux' "${ROOT}"/etc/fstab)
 UUID=$(echo "$UUID_LINE" | awk -F'=' '{print $2}' | awk '{print $1}')
 BOOT_DEVICE=$(findfs UUID="$UUID")
 
 # Get root partition
-UUID_LINE=$(grep '@.snapshots_linux' ${ROOT}/etc/fstab)
+UUID_LINE=$(grep '@.snapshots_linux' "${ROOT}"/etc/fstab)
 UUID=$(echo "$UUID_LINE" | awk -F'=' '{print $2}' | awk '{print $1}')   
 DEVICE=$(findfs UUID="$UUID")
 
 # Unmount mount points
-umount -lv ${ROOT}/boot
-umount -lv ${ROOT}/etc
-umount -lv ${ROOT}/var
+umount -lv "${ROOT}"/boot
+umount -lv "${ROOT}"/etc
+umount -lv "${ROOT}"/var
 
 # Mount boot subvolume
-mount "${BOOT_DEVICE}" -t btrfs -o "subvol=@boot_linux,compress=zstd,noatime" ${ROOT}/.snapshots/boot/boot-deploy
-cp -r --reflink=auto ${ROOT}/.snapshots/boot/boot-deploy/* ${ROOT}/boot/
+mount "${BOOT_DEVICE}" -t btrfs -o "subvol=@boot_linux,compress=zstd,noatime" "${ROOT}"/.snapshots/boot/boot-deploy
+cp -r --reflink=auto "${ROOT}"/.snapshots/boot/boot-deploy/* "${ROOT}"/boot/
 
 # Mount etc subvolume
-mount "${DEVICE}" -t btrfs -o "subvol=@etc_linux,compress=zstd,noatime" ${ROOT}/.snapshots/etc/etc-deploy
+mount "${DEVICE}" -t btrfs -o "subvol=@etc_linux,compress=zstd,noatime" "${ROOT}"/.snapshots/etc/etc-deploy
 cp -r --reflink=auto ${ROOT}/.snapshots/etc/etc-deploy/* ${ROOT}/etc/
 
 # Mount var subvolume
-mount "${DEVICE}" -t btrfs -o "subvol=@var_linux,compress=zstd,noatime" ${ROOT}/.snapshots/var/var-deploy
-cp -r --reflink=auto ${ROOT}/.snapshots/var/var-deploy/* ${ROOT}/var/
+mount "${DEVICE}" -t btrfs -o "subvol=@var_linux,compress=zstd,noatime" "${ROOT}"/.snapshots/var/var-deploy
+cp -r --reflink=auto "${ROOT}"/.snapshots/var/var-deploy/* "${ROOT}"/var/
 
 # Copy base snapshots into deploy root
-cp -r --reflink=auto ${ROOT}/.snapshots/boot/boot-0/* ${ROOT}/.snapshots/rootfs/snapshot-deploy/boot/
-cp -r --reflink=auto ${ROOT}/.snapshots/etc/etc-0/* ${ROOT}/.snapshots/rootfs/snapshot-deploy/etc/
-cp -r --reflink=auto ${ROOT}/.snapshots/var/var-0/* ${ROOT}/.snapshots/rootfs/snapshot-deploy/var/
+cp -r --reflink=auto "${ROOT}"/.snapshots/boot/boot-0/* ${ROOT}/.snapshots/rootfs/snapshot-deploy/boot/
+cp -r --reflink=auto "${ROOT}"/.snapshots/etc/etc-0/* ${ROOT}/.snapshots/rootfs/snapshot-deploy/etc/
+cp -r --reflink=auto "${ROOT}"/.snapshots/var/var-0/* ${ROOT}/.snapshots/rootfs/snapshot-deploy/var/
