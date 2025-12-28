@@ -18,15 +18,15 @@ umount "-lv" "${ROOT}"/etc
 umount "-lv" "${ROOT}"/var
 
 # Mount boot subvolume
-mount "${BOOT_DEVICE}" -t "btrfs" -o "subvol=/@boot_linux,compress=zstd,noatime" "${ROOT}"/.snapshots/boot/boot-deploy
+mount -t "btrfs" -o "subvol=/@boot_linux,compress=zstd,noatime" "${BOOT_DEVICE}" "${ROOT}"/.snapshots/boot/boot-deploy
 cp -r --reflink=auto "${ROOT}"/.snapshots/boot/boot-deploy/* "${ROOT}"/boot/
 
 # Mount etc subvolume
-mount "${DEVICE}" -t "btrfs" -o "subvol=/@etc_linux,compress=zstd,noatime" "${ROOT}"/.snapshots/etc/etc-deploy
+mount -t "btrfs" -o "subvol=/@etc_linux,compress=zstd,noatime" "${DEVICE}" "${ROOT}"/.snapshots/etc/etc-deploy
 cp -r --reflink=auto "${ROOT}"/.snapshots/etc/etc-deploy/* "${ROOT}"/etc/
 
 # Mount var subvolume
-mount "${DEVICE}" -t "btrfs" -o "subvol=/@var_linux,compress=zstd,noatime" "${ROOT}"/.snapshots/var/var-deploy
+mount -t "btrfs" -o "subvol=/@var_linux,compress=zstd,noatime" "${DEVICE}" "${ROOT}"/.snapshots/var/var-deploy
 cp -r --reflink=auto "${ROOT}"/.snapshots/var/var-deploy/* "${ROOT}"/var/
 
 # Copy base snapshots into deploy root
