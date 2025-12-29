@@ -10,6 +10,5 @@ echo '/.snapshots/ash/root /root none bind 0 0' >> /etc/fstab
 echo '/.snapshots/ash/tmp /tmp none bind 0 0' >> /etc/fstab
 
 # Grub update
-sed -i 's/\bLinux\b//g; s/  */ /g' /boot/grub/grub.cfg
 awk -i inplace '/@boot_linux/ && /vmlinuz-linux/ { gsub(/@boot_linux\/vmlinuz-linux/, "@.snapshots_linux/rootfs/snapshot-deploy/boot/vmlinuz-linux") } 1' /boot/grub/grub.cfg
 awk -i inplace '/@boot_linux/ && /initramfs-linux.img/ { gsub(/@boot_linux\/initramfs-linux.img/, "@.snapshots_linux/rootfs/snapshot-deploy/boot/initramfs-linux.img") } 1' /boot/grub/grub.cfg
