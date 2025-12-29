@@ -6,11 +6,13 @@ ROOT="$1"
 UUID_LINE=$(grep '/boot' "${ROOT}"/etc/fstab)
 UUID=$(echo "$UUID_LINE" | awk -F'=' '{print $2}' | awk '{print $1}')
 BOOT_DEVICE=$(findmnt -n -v -o SOURCE UUID="$UUID")
+BOOT_DEVICE=$(echo "$BOOT_DEVICE" | awk '{print $1}')
 
 # Get root partition
 UUID_LINE=$(grep '/ ' "${ROOT}"/etc/fstab)
 UUID=$(echo "$UUID_LINE" | awk -F'=' '{print $2}' | awk '{print $1}')   
 DEVICE=$(findmnt -n -v -o SOURCE UUID="$UUID")
+DEVICE=$(echo "$DEVICE" | awk '{print $1}')
 
 # Unmount mount points
 umount "-lv" "${ROOT}"/boot
