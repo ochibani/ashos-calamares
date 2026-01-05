@@ -1,5 +1,5 @@
 #!/bin/bash
-#set -e
+set -e
 ###############################################################################
 # Author    :   Erik Dubois
 # Website   :   https://www.erikdubois.be
@@ -22,10 +22,10 @@ fi
 package=sddm
 if pacman -Qs $package > /dev/null ; then
   # Create the directory if it doesn't exist
-  sudo mkdir -p /etc/sddm.conf.d
+  mkdir -p /etc/sddm.conf.d
 
   # Write default KDE settings to kde_settings.conf
-  sudo tee /etc/sddm.conf.d/kde_settings.conf > /dev/null << 'EOF'
+  tee /etc/sddm.conf.d/kde_settings.conf > /dev/null << 'EOF'
 [Autologin]
 Relogin=false
 Session=plasma
@@ -45,8 +45,8 @@ MinimumUid=1000
 EOF
 
   # Set proper ownership and permissions
-  sudo chown root:root /etc/sddm.conf.d/kde_settings.conf
-  sudo chmod 644 /etc/sddm.conf.d/kde_settings.conf
+  chown root:root /etc/sddm.conf.d/kde_settings.conf
+  chmod 644 /etc/sddm.conf.d/kde_settings.conf
 
   ln -sf /usr/lib/systemd/system/sddm.service /etc/systemd/system/display-manager.service
 fi
