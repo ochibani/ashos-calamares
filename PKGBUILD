@@ -88,8 +88,5 @@ package() {
     cp -rf ${srcdir}/${_pkgname}/src/scripts "$pkgdir/etc/calamares"
     cp -rf ${srcdir}/${_pkgname}/src/images "$pkgdir/etc/calamares"
     mkdir -p "$pkgdir/usr/local/"
-    mkdir -p "$pkgdir/etc/systemd/system"
-    install -Dm755 "${srcdir}/${_pkgname}/bin/clone" "$pkgdir/usr/local/bin/clone"   
     install -Dm755 "${srcdir}/${_pkgname}/bin/dmcheck" "$pkgdir/usr/local/bin/dmcheck"
-    cp ${srcdir}/${_pkgname}/services/firstboot-clone.service "$pkgdir/etc/systemd/system/firstboot-clone.service"
 }
