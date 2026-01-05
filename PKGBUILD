@@ -23,6 +23,7 @@ depends=(
   'util-linux'
 )
 makedepends=(
+  'base-devel'
   'extra-cmake-modules'
   'git'
   'ninja'
