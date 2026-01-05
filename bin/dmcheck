@@ -42,7 +42,7 @@ Current=breeze
 HideUsers=aur
 MaximumUid=60513
 MinimumUid=1000
-  EOF
+EOF
 
   # Set proper ownership and permissions
   sudo chown root:root /etc/sddm.conf.d/kde_settings.conf
