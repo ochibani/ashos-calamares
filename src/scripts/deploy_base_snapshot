@@ -10,7 +10,7 @@ $BTRFS subvolume snapshot / /.snapshots/rootfs/snapshot-chr0
 # Copy boot, etc, var using reflinks
 cp -r --reflink=auto /boot/* /.snapshots/rootfs/snapshot-chr0/boot
 cp -r --reflink=auto /etc/* /.snapshots/rootfs/snapshot-chr0/etc
-rm -rf /.snapshots/rootfs/snapshot-chr0/calamares
+rm -rf /.snapshots/rootfs/snapshot-chr0/etc/calamares
 cp -r --reflink=auto /var/* /.snapshots/rootfs/snapshot-chr0/var
 
 # Create readonly snapshot
