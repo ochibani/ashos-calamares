@@ -64,7 +64,17 @@
 ### END USAGE
 
 TOOLS_DIR="."
-CMAKE_ARGS=""
+CMAKE_ARGS="-G Ninja -DCMAKE_BUILD_TYPE=Release -DWITH_QT6=ON -DINSTALL_CONFIG=ON
+    -DSKIP_MODULES='dracut 
+    dracutlukscfg 
+    dummycpp 
+    dummyprocess 
+    dummypython 
+    dummypythonqt 
+    interactiveterminal 
+    services-openrc'
+    -DBUILD_TESTING=OFF -Wno-dev
+    "
 DO_REBUILD="true"
 DO_CONDA="false"
 CONFIG_DIR=""
@@ -184,14 +194,14 @@ if $DO_REBUILD ; then
     ) >> "$LOG_FILE" 2>&1 || { tail -10 "$LOG_FILE" ; echo "! Could not run CMake"; exit 1; }
     echo "# Running make ..."
     (
-        cd "$BUILD_DIR/build" &&
-        make -j4
+        cd "$BUILD_DIR" &&
+        cmake --build build
     ) >> "$LOG_FILE" 2>&1 || { tail -10 "$LOG_FILE" ; echo "! Could not run make"; exit 1; }
 fi
 echo "# Running make install ..."
 (
     cd "$BUILD_DIR/build" &&
-    make install DESTDIR=../AppDir
+    DESTDIR="../AppDir" cmake --build . --target install 
 ) >> "$LOG_FILE" 2>&1 || { tail -10 "$LOG_FILE" ; echo "! Could not run make install"; exit 1; }
 
 ### Modify installation
