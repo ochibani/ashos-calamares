@@ -267,7 +267,7 @@ fi
 #
 echo "# Building AppImage"
 (
-    export QT_SELECT=qt5  # Otherwise might pick Qt4 in image
+    export QT_SELECT=qt6  # Otherwise might pick Qt4 in image
     export LD_LIBRARY_PATH=AppDir/usr/lib  # RPATH isn't set in the executable
     cd "$BUILD_DIR" &&
     ./linuxdeploy-x86_64.AppImage --appdir=AppDir/ --plugin=qt --output=appimage
