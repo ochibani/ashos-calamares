@@ -269,6 +269,7 @@ echo "# Building AppImage"
 (
     export QT_SELECT=qt6  # Otherwise might pick Qt4 in image
     export LD_LIBRARY_PATH=AppDir/usr/lib  # RPATH isn't set in the executable
+    export NO_STRIP=true
     cd "$BUILD_DIR" &&
     ./linuxdeploy-x86_64.AppImage --appdir=AppDir/ --plugin=qt --output=appimage
 ) >> "$LOG_FILE" 2>&1 || { tail -10 "$LOG_FILE" ; echo "! Could not create image"; exit 1; }
