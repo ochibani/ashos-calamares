@@ -21,6 +21,7 @@ depends=(
   'sed'
   'gawk'
   'util-linux'
+  'man-pages-es'
 )
 makedepends=(
   'base-devel'
