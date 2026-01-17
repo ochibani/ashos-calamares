@@ -48,3 +48,6 @@ EOF
 mkdir -p /.snapshots/ash/snapshots
 echo '' > /.snapshots/ash/deploy-tmp
 ln -sf /.snapshots/ash /var/lib/ash
+
+# Install ash
+su aur -c 'paru -Sy ash-git --noconfirm'
