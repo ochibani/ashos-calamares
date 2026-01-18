@@ -21,7 +21,6 @@ depends=(
   'sed'
   'gawk'
   'util-linux'
-  'man-pages-es'
   'python'
 )
 makedepends=(
