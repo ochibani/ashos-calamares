@@ -22,6 +22,7 @@ depends=(
   'gawk'
   'util-linux'
   'man-pages-es'
+  'python'
 )
 makedepends=(
   'base-devel'
