@@ -9,8 +9,6 @@ else
     EFI=false
 fi
 
-# Detect file system type for boot partition
-
 # Get boot partition
 UUID_LINE=$(grep '/boot' "${ROOT}"/etc/fstab)
 UUID=$(echo "$UUID_LINE" | awk -F'=' '{print $2}' | awk '{print $1}')
