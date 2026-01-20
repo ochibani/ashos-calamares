@@ -25,7 +25,11 @@ UUID=$(echo "$UUID_LINE" | awk -F'=' '{print $2}' | awk '{print $1}')
 DEVICE=$(blkid -t UUID="$UUID" -o device)
 
 # Unmount mount points
-umount "-lv" "${ROOT}"/boot
+if [ "$EFI" = true ]; then
+    umount "-lv" "${ROOT}"/boot/efi
+else
+    umount "-lv" "${ROOT}"/boot
+fi
 umount "-lv" "${ROOT}"/etc
 umount "-lv" "${ROOT}"/var
 
