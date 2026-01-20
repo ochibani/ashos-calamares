@@ -2,11 +2,21 @@
 set -e
 ROOT="$1"
 
+# Detect EFI or BIOS
+if [ -d "${ROOT}/sys/firmware/efi" ]; then
+    EFI=true
+else
+    EFI=false
+fi
+
+# Detect file system type for boot partition
+
 # Get boot partition
 UUID_LINE=$(grep '/boot' "${ROOT}"/etc/fstab)
 UUID=$(echo "$UUID_LINE" | awk -F'=' '{print $2}' | awk '{print $1}')
 #BOOT_DEVICE=$(findmnt -n -v -o SOURCE --first-only UUID="$UUID")
 BOOT_DEVICE=$(blkid -t UUID="$UUID" -o device)
+FSTYPE=$(blkid -t UUID="$UUID" -o value -s TYPE)
 
 # Get root partition
 UUID_LINE=$(grep '/ ' "${ROOT}"/etc/fstab)
@@ -20,7 +30,13 @@ umount "-lv" "${ROOT}"/etc
 umount "-lv" "${ROOT}"/var
 
 # Mount boot subvolume
-mount -t "btrfs" -o "subvol=/@boot_linux,compress=zstd,noatime" "${BOOT_DEVICE}" "${ROOT}"/.snapshots/boot/boot-deploy
+if [ "$EFI" = true ]; then
+    mount -t vfat -o rw,relatime,fmask=0077,dmask=0077 "${BOOT_DEVICE}" "${ROOT}"/.snapshots/boot/boot-deploy
+elif [ "$FSTYPE" != "btrfs" ]; then
+    mount -t "${FSTYPE}" "${BOOT_DEVICE}" "${ROOT}"/.snapshots/boot/boot-deploy
+else 
+    mount -t "btrfs" -o "subvol=/@boot_linux,compress=zstd,noatime" "${BOOT_DEVICE}" "${ROOT}"/.snapshots/boot/boot-deploy
+fi
 cp -r --reflink=auto "${ROOT}"/.snapshots/boot/boot-deploy/* "${ROOT}"/boot/
 
 # Mount etc subvolume
