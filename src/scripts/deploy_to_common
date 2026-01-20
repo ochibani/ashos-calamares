@@ -10,7 +10,11 @@ else
 fi
 
 # Get boot partition
-UUID_LINE=$(grep '/boot' "${ROOT}"/etc/fstab)
+if [ "$EFI" = true ]; then
+    UUID_LINE=$(grep '/boot/efi' "${ROOT}"/etc/fstab)
+else
+    UUID_LINE=$(grep '/boot' "${ROOT}"/etc/fstab)
+fi
 UUID=$(echo "$UUID_LINE" | awk -F'=' '{print $2}' | awk '{print $1}')
 #BOOT_DEVICE=$(findmnt -n -v -o SOURCE --first-only UUID="$UUID")
 BOOT_DEVICE=$(blkid -t UUID="$UUID" -o device)
