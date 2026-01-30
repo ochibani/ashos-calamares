@@ -33,7 +33,18 @@ FSTYPE=$(blkid -t UUID="$UUID" -o value -s TYPE)
 
 # Get root partition
 UUID_LINE=$(grep '/ ' "${ROOT}"/etc/fstab)
-UUID=$(echo "$UUID_LINE" | awk -F'=' '{print $2}' | awk '{print $1}')   
+# Detect encrypted boot
+if [[ "$UUID_LINE" == *"/dev/mapper"* ]]; then
+    LUKS=true
+else
+    LUKS=false
+fi
+if [ "$LUKS" = true ]; then
+    device=$(echo "$UUID_LINE" | cut -d' ' -f1)
+    UUID=$(blkid -s UUID -o value $device)
+else
+    UUID=$(echo "$UUID_LINE" | awk -F'=' '{print $2}' | awk '{print $1}')
+fi
 #DEVICE=$(findmnt -n -v -o SOURCE --first-only UUID="$UUID")
 DEVICE=$(blkid -t UUID="$UUID" -o device)
 
