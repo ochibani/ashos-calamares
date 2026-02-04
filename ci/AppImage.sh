@@ -63,6 +63,7 @@
 #
 ### END USAGE
 
+QMAKE="qmake6"
 TOOLS_DIR="."
 CMAKE_ARGS="-G Ninja -DCMAKE_BUILD_TYPE=Release -DWITH_QT6=ON -DINSTALL_CONFIG=ON
     -DSKIP_MODULES='dracut 
@@ -223,7 +224,7 @@ cat > "$IMAGE_DIR/usr/bin/calamares" <<"EOF"
 # Calamares proxy-script. Runs Calamares with XDG support enabled,
 # and in-image XDG dirs set up so that compiled-in configuration can be used.
 test -n "${XDG_DATA_DIRS}" && XDG_DATA_DIRS="${XDG_DATA_DIRS}:"
-test -n "${XDG_CONFIG_DIRS}" $$ XDG_CONFIG_DIRS="${XDG_CONFIG_DIRS}:"
+test -n "${XDG_CONFIG_DIRS}" && XDG_CONFIG_DIRS="${XDG_CONFIG_DIRS}:"
 export XDG_DATA_DIRS="${XDG_DATA_DIRS}${APPDIR}/usr/share/"
 export XDG_CONFIG_DIRS="${XDG_CONFIG_DIRS}${APPDIR}/etc/:${APPDIR}/usr/share/"
 export PYTHONPATH="${APPDIR}/usr/lib:"
@@ -235,11 +236,11 @@ test -x "$IMAGE_DIR/usr/bin/calamares" || { echo "! Does not seem to have proxy 
 
 ### Install additional files
 #
-PLUGIN_DIR=$( qmake  -query QT_INSTALL_PLUGINS )
+PLUGIN_DIR=$( "$QMAKE"  -query QT_INSTALL_PLUGINS )
 for plugin in \
-    libpmsfdiskbackendplugin.so \
-    libpmdummybackendplugin.so \
-    libpmlibpartedbackendplugin.so
+    pmsfdiskbackendplugin.so \
+    pmdummybackendplugin.so \
+    pmlibpartedbackendplugin.so
 do
     # Warning, but not fatal: generally you only have two out of three available
     # depending on the KPMCore version.
