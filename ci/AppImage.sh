@@ -244,7 +244,7 @@ for plugin in \
 do
     # Warning, but not fatal: generally you only have two out of three available
     # depending on the KPMCore version.
-    cp "$PLUGIN_DIR/$plugin" "$IMAGE_DIR/usr/lib" 2> /dev/null || { echo "! Could not copy KPMCore plugin $plugin"; }
+    cp "$PLUGIN_DIR/kpmcore/$plugin" "$IMAGE_DIR/usr/lib" 2> /dev/null || { echo "! Could not copy KPMCore plugin $plugin"; }
 done
 
 # Install configuration files
