@@ -254,8 +254,6 @@ test -d "$ETC_DIR" || { echo "! Could not create /etc/calamares in image."; exit
 if test -z "$CONFIG_DIR" ; then
     echo "# Using basic settings.conf"
     cp "$SRC_DIR/settings.conf" "$ETC_DIR"
-    test -d "$SRC_DIR/src/modules" && cp -r "$SRC_DIR/src/modules" "$ETC_DIR"
-    test -d "$SRC_DIR/src/branding" && cp -r "$SRC_DIR/src/branding" "$IMAGE_DIR/usr/share/calamares"
 else
     test -f "$CONFIG_DIR/settings.conf" || { echo "! No settings.conf in $CONFIG_DIR"; exit 1; }
     mkdir -p "$ETC_DIR/modules"
