@@ -228,7 +228,6 @@ test -n "${XDG_CONFIG_DIRS}" && XDG_CONFIG_DIRS="${XDG_CONFIG_DIRS}:"
 export XDG_DATA_DIRS="${XDG_DATA_DIRS}${APPDIR}/usr/share/"
 export XDG_CONFIG_DIRS="${XDG_CONFIG_DIRS}${APPDIR}/etc/:${APPDIR}/usr/share/"
 export PYTHONPATH="${APPDIR}/usr/lib:"
-# Update the modules-search line to place /usr/lib before local
 cd "$APPDIR"
 exec "$APPDIR"/usr/bin/calamares.bin -X "$@"
 EOF
