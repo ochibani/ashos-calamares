@@ -256,7 +256,7 @@ if test -z "$CONFIG_DIR" ; then
     echo "# Using basic settings.conf"
     cp "$SRC_DIR/settings.conf" "$ETC_DIR"
     mkdir -p "$ETC_DIR/modules"
-    test -d "$SRC_DIR/src/modules" && cp -r "$SRC_DIR/src/modules/*/*.conf" "$ETC_DIR/modules"
+    test -d "$SRC_DIR/src/modules" && cp "$SRC_DIR"/src/modules/*/*.conf "$ETC_DIR"/modules
     test -d "$SRC_DIR/src/scripts" && cp -r "$SRC_DIR/src/scripts" "$ETC_DIR"
     test -d "$SRC_DIR/src/images" && cp -r "$SRC_DIR/src/images" "$ETC_DIR"
     test -d "$SRC_DIR/src/branding" && cp -r "$SRC_DIR/src/branding" "$IMAGE_DIR/usr/share/calamares"
