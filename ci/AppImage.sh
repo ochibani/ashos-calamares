@@ -225,6 +225,8 @@ cat > "$IMAGE_DIR/usr/bin/calamares" <<"EOF"
 # and in-image XDG dirs set up so that compiled-in configuration can be used.
 test -n "${XDG_DATA_DIRS}" && XDG_DATA_DIRS="${XDG_DATA_DIRS}:"
 test -n "${XDG_CONFIG_DIRS}" && XDG_CONFIG_DIRS="${XDG_CONFIG_DIRS}:"
+unset LD_PRELOAD
+unset LD_LIBRARY_PATH
 export XDG_DATA_DIRS="${XDG_DATA_DIRS}${APPDIR}/usr/share/"
 export XDG_CONFIG_DIRS="${XDG_CONFIG_DIRS}${APPDIR}/etc/:${APPDIR}/usr/share/"
 export PYTHONPATH="${APPDIR}/usr/lib:"
@@ -256,7 +258,7 @@ if test -z "$CONFIG_DIR" ; then
     echo "# Using basic settings.conf"
     cp "$SRC_DIR/settings.conf" "$ETC_DIR"
     mkdir -p "$ETC_DIR/modules"
-    test -d "$SRC_DIR/src/modules" && cp "$SRC_DIR"/src/modules/*/*.conf "$ETC_DIR"/modules
+    test -d "$SRC_DIR/src/modules" && cp "$SRC_DIR"/src/modules/*/*.conf "$ETC_DIR"/modules/
     test -d "$SRC_DIR/src/scripts" && cp -r "$SRC_DIR/src/scripts" "$ETC_DIR"
     test -d "$SRC_DIR/src/images" && cp -r "$SRC_DIR/src/images" "$ETC_DIR"
     test -d "$SRC_DIR/src/branding" && cp -r "$SRC_DIR/src/branding" "$IMAGE_DIR/usr/share/calamares"
@@ -273,7 +275,7 @@ fi
 #
 echo "# Building AppImage"
 (
-    export QT_SELECT=qt6  # Otherwise might pick Qt4 in image
+    export QT_SELECT=qt6  # Otherwise might pick Qt5 in image
     export LD_LIBRARY_PATH=AppDir/usr/lib  # RPATH isn't set in the executable
     export NO_STRIP=true
     cd "$BUILD_DIR" &&
