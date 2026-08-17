@@ -114,6 +114,12 @@ get_gs_expander( System::RunLocation location )
         expander.insert( QStringLiteral( "USER" ), gs->value( "username" ).toString() );
     }
 
+    // Replacement for ${DISTRO}
+    if ( gs && gs->contains( "DISTRO" ) )
+    {
+        expander.insert( QStringLiteral( "DISTRO" ), gs->value( "DISTRO" ).toString() );
+    }
+
     if ( gs )
     {
         const auto key = QStringLiteral( "LANG" );

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 48 48"
+   version="1.1"
+   id="svg3"
+   sodipodi:docname="arch.svg"
+   inkscape:version="1.4.4 (dcaf3e7d9e, 2026-05-05)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview3"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="2.7547702"
+     inkscape:cx="6.1711137"
+     inkscape:cy="12.523731"
+     inkscape:window-width="1078"
+     inkscape:window-height="694"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg3" />
+  <defs
+     id="defs2">
+    <linearGradient
+       id="archGrad"
+       x1="0%"
+       y1="0%"
+       x2="100%"
+       y2="100%">
+      <stop
+         offset="0%"
+         style="stop-color:#1793D1"
+         id="stop1" />
+      <stop
+         offset="100%"
+         style="stop-color:#0E5E9C"
+         id="stop2" />
+    </linearGradient>
+  </defs>
+  <path
+     d="m 24.089019,1.8025891 c -1.930028,4.933575 -3.170761,8.034681 -5.376505,12.8272979 1.378591,1.550552 3.0329,3.242065 5.652224,5.074536 C 21.469696,18.57675 19.539667,17.308114 18.161077,16.03948 15.266036,22.100733 10.854545,30.558291 2.0315613,47.050532 8.9245173,42.821753 14.438881,40.284484 19.539667,39.29777 19.263949,38.311052 19.126091,37.324338 19.126091,36.196665 v -0.14096 c 0.137858,-4.65166 2.481462,-8.175642 5.238647,-7.893724 2.757181,0.140959 4.962928,4.087823 4.825067,8.739479 l -0.275718,2.39631 c 4.962927,0.986714 10.33943,3.664942 17.232388,7.611803 l -3.722198,-7.047966 c -1.792171,-1.409596 -3.722192,-3.242065 -7.582248,-5.356456 2.619323,0.704796 4.54935,1.550554 6.065796,2.396309 C 29.051947,14.488927 28.086933,11.528782 24.089019,1.6616291 Z"
+     fill="#1793d1"
+     id="path1"
+     style="stroke-width:0.139401" />
+</svg>
