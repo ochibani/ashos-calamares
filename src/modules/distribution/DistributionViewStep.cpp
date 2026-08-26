@@ -103,6 +103,22 @@ void DistributionViewStep::onLeave()
 
             gs->insert( "DISTRO_PRETTY", prettyName );
 
+            // Load per-item packages for the selected distro
+            if ( d->m_configuration.contains( "packages" ) )
+            {
+                QVariantMap packagesMap = d->m_configuration.value( "packages" ).toMap();
+                QVariantMap distroPackages;
+                for ( auto it = packagesMap.constBegin(); it != packagesMap.constEnd(); ++it )
+                {
+                    QVariantMap itemDistros = it.value().toMap();
+                    if ( itemDistros.contains( d->m_selectedDistribution ) )
+                    {
+                        distroPackages.insert( it.key(), itemDistros.value( d->m_selectedDistribution ) );
+                    }
+                }
+                gs->insert( "distroPackages", distroPackages );
+            }
+
             cDebug() << "Distribution selected:" << d->m_selectedDistribution;
         }
     }

@@ -10,6 +10,8 @@
 #include "PackageModel.h"
 
 #include "Branding.h"
+#include "GlobalStorage.h"
+#include "JobQueue.h"
 #include "utils/Logger.h"
 #include "utils/Variant.h"
 
@@ -69,6 +71,25 @@ PackageItem::PackageItem( const QVariantMap& item_map )
     , packageNames( Calamares::getStringList( item_map, "packages" ) )
     , netinstallData( getSubMap( item_map, "netinstall" ) )
 {
+    // Expand $PACKAGES from distroPackages in GlobalStorage
+    if ( packageNames.contains( "$PACKAGES" ) || packageNames.contains( "${PACKAGES}" ) )
+    {
+        Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
+        if ( gs && gs->contains( "distroPackages" ) && !id.isEmpty() )
+        {
+            QVariantMap distroPackages = gs->value( "distroPackages" ).toMap();
+            if ( distroPackages.contains( id ) )
+            {
+                QStringList resolved;
+                const QVariantList gsPackages = distroPackages.value( id ).toList();
+                for ( const auto& p : gsPackages )
+                {
+                    resolved.append( p.toString() );
+                }
+                packageNames = resolved;
+            }
+        }
+    }
     if ( name.isEmpty() && id.isEmpty() )
     {
         name = QObject::tr( "No product" );

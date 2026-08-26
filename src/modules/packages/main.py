@@ -756,6 +756,19 @@ def run():
 
     backend = libcalamares.job.configuration.get("backend")
 
+    # Auto-select backend based on $DISTRO if backend is "auto" or not set
+    if not backend or backend == "auto":
+        distro = libcalamares.globalstorage.value("DISTRO")
+        distro_backend_map = {
+            "arch": "pacman",
+            "debian": "apt",
+            "fedora": "dnf",
+        }
+        backend = distro_backend_map.get(distro)
+        if not backend:
+            return "Unknown distribution", "DISTRO=\"{}\" has no mapped package manager".format(distro)
+        libcalamares.utils.debug("Auto-selected backend '{}' for distro '{}'".format(backend, distro))
+
     for identifier, impl in backend_managers:
         if identifier == backend:
             pkgman = impl()

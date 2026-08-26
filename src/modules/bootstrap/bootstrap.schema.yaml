@@ -1,0 +1,8 @@
+---
+$schema: https://json-schema.org/schema#
+$id: https://calamares.io/schemas/bootstrap
+additionalProperties: false
+type: object
+properties:
+    basePackages: { type: object }
+    postInstallFiles: { type: object }

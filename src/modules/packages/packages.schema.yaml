@@ -11,6 +11,7 @@ properties:
         enum:
             - apk
             - apt
+            - auto
             - dnf
             - dnf5
             - entropy
