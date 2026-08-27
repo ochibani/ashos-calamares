@@ -89,6 +89,4 @@ package() {
     cp -rf ${srcdir}/${_pkgname}/src/modules/*/*.conf "$pkgdir/etc/calamares/modules"
     cp -rf ${srcdir}/${_pkgname}/src/scripts "$pkgdir/etc/calamares"
     cp -rf ${srcdir}/${_pkgname}/src/images "$pkgdir/etc/calamares"
-    mkdir -p "$pkgdir/usr/local/"
-    install -Dm755 "${srcdir}/${_pkgname}/bin/dmcheck" "$pkgdir/usr/local/bin/dmcheck"
 }

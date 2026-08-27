@@ -5421,5 +5421,36 @@ Shtylla vertikale e rrëshqitjeve është e ndryshueshme, aktualisht vënë sa 1
       <source>Donate</source>
       <translation>Dhuroni</translation>
     </message>
+    </context>
+  <context>
+    <name>DistributionPage</name>
+    <message>
+      <location filename="../src/modules/distribution/DistributionPage.cpp" line="48"/>
+      <source>Please select your distribution:</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/distribution/DistributionPage.cpp" line="135"/>
+      <source>Arch Linux</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/distribution/DistributionPage.cpp" line="137"/>
+      <source>Debian</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/distribution/DistributionPage.cpp" line="139"/>
+      <source>Fedora</source>
+      <translation type="unfinished"/>
+    </message>
+  </context>
+  <context>
+    <name>DistributionViewStep</name>
+    <message>
+      <location filename="../src/modules/distribution/DistributionViewStep.cpp" line="48"/>
+      <source>Distribution</source>
+      <translation type="unfinished"/>
+    </message>
   </context>
 </TS>

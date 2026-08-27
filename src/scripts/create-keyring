@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# Initialize package manager keyring
+# Reads DISTRO from environment to determine distro-specific setup
+
+DISTRO="${DISTRO:-arch}"
+exec 2>&1
+
+case "$DISTRO" in
+  arch)
+    pacman-key --init
+    for ((i=0; i<5; i++)); do pacman -Sy --noconfirm archlinux-keyring && break; done
+    pacman-key --populate
+    ;;
+  debian)
+    apt-get update -qq
+    apt-get install -y -qq debian-archive-keyring
+    ;;
+  fedora)
+    rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-$(rpm -E %fedora)-x86_64
+    ;;
+  *)
+    echo "WARNING: Unknown distro '$DISTRO', skipping keyring setup"
+    ;;
+esac

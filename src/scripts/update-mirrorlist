@@ -1,4 +1,24 @@
 #!/usr/bin/env bash
-echo "Updating rate-mirrors"
-sudo pacman -Sy --noconfirm rate-mirrors
-sudo -u liveuser rate-mirrors arch
+# Update package manager mirrorlist/sources
+# Reads DISTRO from environment to determine distro-specific mirror update
+
+DISTRO="${DISTRO:-arch}"
+
+case "$DISTRO" in
+  arch)
+    echo "Updating rate-mirrors"
+    sudo pacman -Sy --noconfirm rate-mirrors
+    sudo -u liveuser rate-mirrors arch
+    ;;
+  debian)
+    echo "Updating apt sources"
+    apt-get update -qq
+    ;;
+  fedora)
+    echo "Updating dnf cache"
+    dnf makecache -q
+    ;;
+  *)
+    echo "WARNING: Unknown distro '$DISTRO', skipping mirror update"
+    ;;
+esac

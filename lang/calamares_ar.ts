@@ -2492,7 +2492,7 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="59"/>
       <source>Desktop</source>
       <comment>label for netinstall module, choose desktop environment</comment>
-      <translation type="unfinished"/>
+      <translation>المكتب</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="60"/>
@@ -5424,6 +5424,37 @@ The vertical scrollbar is adjustable, current width set to 10.</source>
       <location filename="../src/modules/welcomeq/welcomeq-qt6.qml" line="103"/>
       <source>Donate</source>
       <translation>تبرع</translation>
+    </message>
+  </context>
+  <context>
+    <name>DistributionPage</name>
+    <message>
+      <location filename="../src/modules/distribution/DistributionPage.cpp" line="48"/>
+      <source>Please select your distribution:</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/distribution/DistributionPage.cpp" line="135"/>
+      <source>Arch Linux</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/distribution/DistributionPage.cpp" line="137"/>
+      <source>Debian</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/distribution/DistributionPage.cpp" line="139"/>
+      <source>Fedora</source>
+      <translation type="unfinished"/>
+    </message>
+  </context>
+  <context>
+    <name>DistributionViewStep</name>
+    <message>
+      <location filename="../src/modules/distribution/DistributionViewStep.cpp" line="48"/>
+      <source>Distribution</source>
+      <translation>التوزيعة</translation>
     </message>
   </context>
 </TS>

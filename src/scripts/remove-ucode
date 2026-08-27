@@ -1,11 +1,29 @@
 #!/usr/bin/env bash
+# Remove the "wrong" microcode package
+# Reads DISTRO from environment to determine distro-specific package management
 
-# Remove the "wrong" microcode.
+DISTRO="${DISTRO:-arch}"
+
+# Detect CPU vendor
 case "$(grep -w "^vendor_id" /proc/cpuinfo | head -n 1 | awk '{print $3}')" in
-    GenuineIntel)       pkgname=amd-ucode ;;
-    AuthenticAMD | *)   pkgname=intel-ucode ;;
+  GenuineIntel)       pkgname=amd-ucode ;;
+  AuthenticAMD | *)   pkgname=intel-ucode ;;
 esac
 
-[[ $(pacman -Q "${pkgname}"  2</dev/null) ]] && pacman -R --noconfirm "${pkgname}"
+# Check if package is installed and remove it
+case "$DISTRO" in
+  arch)
+    [[ $(pacman -Q "${pkgname}" 2>/dev/null) ]] && pacman -R --noconfirm "${pkgname}"
+    ;;
+  debian)
+    dpkg -l "${pkgname}" 2>/dev/null | grep -q "^ii" && apt-get remove -y -qq "${pkgname}"
+    ;;
+  fedora)
+    rpm -q "${pkgname}" > /dev/null 2>&1 && dnf remove -y -q "${pkgname}"
+    ;;
+  *)
+    echo "WARNING: Unknown distro '$DISTRO', skipping microcode removal"
+    ;;
+esac
 
 exit 0

@@ -1,0 +1,94 @@
+#!/bin/bash
+set -e
+# Display manager check and setup
+# Reads DISTRO from environment to determine distro-specific package queries
+
+DISTRO="${DISTRO:-arch}"
+
+# Helper function to check if a package is installed
+is_installed() {
+  local package="$1"
+  case "$DISTRO" in
+    arch)   pacman -Qs "$package" > /dev/null 2>&1 ;;
+    debian) dpkg -l "$package" 2>/dev/null | grep -q "^ii" ;;
+    fedora) rpm -q "$package" > /dev/null 2>&1 ;;
+    *)      return 1 ;;
+  esac
+}
+
+# ly display manager (TUI, no user list to hide)
+if is_installed ly; then
+  ln -sf /usr/lib/systemd/system/ly.service /etc/systemd/system/display-manager.service
+fi
+
+# sddm
+if is_installed sddm; then
+  mkdir -p /etc/sddm.conf.d
+  tee /etc/sddm.conf.d/kde_settings.conf > /dev/null << 'EOF'
+[Autologin]
+Relogin=false
+Session=plasma
+User=
+
+[General]
+HaltCommand=/usr/bin/systemctl poweroff
+RebootCommand=/usr/bin/systemctl reboot
+
+[Theme]
+Current=breeze
+
+[Users]
+HideUsers=aur
+MaximumUid=60513
+MinimumUid=1000
+EOF
+  chown root:root /etc/sddm.conf.d/kde_settings.conf
+  chmod 644 /etc/sddm.conf.d/kde_settings.conf
+  ln -sf /usr/lib/systemd/system/sddm.service /etc/systemd/system/display-manager.service
+fi
+
+# gdm
+if is_installed gdm; then
+  mkdir -p /etc/gdm
+  tee /etc/gdm/custom.conf > /dev/null << 'EOF'
+[daemon]
+AutomaticLoginEnable=false
+
+[greeter]
+ExcludeUser=aur
+EOF
+  chown root:root /etc/gdm/custom.conf
+  chmod 644 /etc/gdm/custom.conf
+  ln -sf /usr/lib/systemd/system/gdm.service /etc/systemd/system/display-manager.service
+fi
+
+# lxdm
+if is_installed lxdm; then
+  mkdir -p /etc/lxdm
+  if [ -f /etc/lxdm/lxdm.conf ]; then
+    sed -i 's/^#*hide_users=.*/hide_users=1/' /etc/lxdm/lxdm.conf
+  else
+    tee /etc/lxdm/lxdm.conf > /dev/null << 'EOF'
+[base]
+hide_users=1
+autologin=
+session=/usr/bin/startlxde
+display=:0
+EOF
+  fi
+  ln -sf /usr/lib/systemd/system/lxdm.service /etc/systemd/system/display-manager.service
+fi
+
+# lightdm
+if is_installed lightdm; then
+  mkdir -p /etc/lightdm
+  tee /etc/lightdm/lightdm.conf > /dev/null << 'EOF'
+[Seat:*]
+greeter-hide-users=true
+greeter-show-manual-login=true
+autologin-user=
+EOF
+  chown root:root /etc/lightdm/lightdm.conf
+  chmod 644 /etc/lightdm/lightdm.conf
+  ln -sf /usr/lib/systemd/system/lightdm.service /etc/systemd/system/display-manager.service
+fi

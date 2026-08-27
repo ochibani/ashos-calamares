@@ -59,7 +59,7 @@ def run_in_host(command, line_func):
 
 def bootstrap_arch(root_mount_point, packages):
     """Bootstrap Arch Linux using pacstrap"""
-    pacstrap_command = ["/etc/calamares/scripts/pacstrap_calamares", "-c", root_mount_point] + packages
+    pacstrap_command = ["/etc/calamares/scripts/bootstrap_calamares", "-c", "-D", distro, root_mount_point] + packages
     run_in_host(pacstrap_command, line_cb)
 
 

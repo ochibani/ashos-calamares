@@ -1,0 +1,168 @@
+#!/bin/bash
+
+# Bootstrap script for Calamares - supports Arch, Debian, and Fedora
+# Reads DISTRO from environment or argument to determine which tool to use
+
+set -e
+
+usage() {
+  cat <<EOF
+usage: ${0##*/} [options] root [packages...]
+
+  Options:
+    -C <config>    Use an alternate config file for pacman (Arch only)
+    -c             Use the package cache on the host, rather than the target
+    -G             Avoid copying the host's pacman keyring to the target (Arch only)
+    -i             Prompt for package confirmation when needed (run interactively)
+    -M             Avoid copying the host's mirrorlist to the target (Arch only)
+    -D <distro>    Specify distribution (arch, debian, fedora)
+
+    -h             Print this help message
+
+EOF
+}
+
+out() { printf "$1 $2\n" "${@:3}"; }
+error() { out "==> ERROR:" "$@"; } >&2
+warning() { out "==> WARNING:" "$@"; } >&2
+msg() { out "==>" "$@"; }
+msg2() { out "  ->" "$@";}
+die() { error "$@"; exit 1; }
+
+# Pseudo filesystem types (from util-linux)
+declare -A pseudofs_types=([anon_inodefs]=1 [autofs]=1 [bdev]=1 [bpf]=1
+  [binfmt_misc]=1 [cgroup]=1 [cgroup2]=1 [configfs]=1 [cpuset]=1
+  [debugfs]=1 [devfs]=1 [devpts]=1 [devtmpfs]=1 [dlmfs]=1 [efivarfs]=1
+  [fuse.gvfs-fuse-daemon]=1 [fusectl]=1 [hugetlbfs]=1 [mqueue]=1
+  [nfsd]=1 [none]=1 [pipefs]=1 [proc]=1 [pstore]=1 [ramfs]=1
+  [rootfs]=1 [rpc_pipefs]=1 [securityfs]=1 [sockfs]=1 [spufs]=1
+  [sysfs]=1 [tmpfs]=1)
+
+chroot_add_mount() {
+  mount "$@" && CHROOT_ACTIVE_MOUNTS=("$2" "${CHROOT_ACTIVE_MOUNTS[@]}")
+}
+
+chroot_setup() {
+  CHROOT_ACTIVE_MOUNTS=()
+  [[ $(trap -p EXIT) ]] && die '(BUG): attempting to overwrite existing EXIT trap'
+  trap 'chroot_teardown' EXIT
+}
+
+chroot_teardown() {
+  if (( ${#CHROOT_ACTIVE_MOUNTS[@]} )); then
+    umount "${CHROOT_ACTIVE_MOUNTS[@]}"
+  fi
+  unset CHROOT_ACTIVE_MOUNTS
+}
+
+bootstrap_arch() {
+  local newroot=$1; shift
+  local pacman_args=("${@:-base}")
+
+  hostcache=0
+  copykeyring=1
+  copymirrorlist=1
+  interactive=0
+
+  while getopts ':C:cdGiM' flag; do
+    case $flag in
+      C) pacman_config=$OPTARG ;;
+      d) ;; # retired
+      c) hostcache=1 ;;
+      G) copykeyring=0 ;;
+      i) interactive=1 ;;
+      M) copymirrorlist=0 ;;
+    esac
+  done
+
+  if (( ! hostcache )); then
+    pacman_args+=(--cachedir="$newroot/var/cache/pacman/pkg")
+  fi
+
+  if (( ! interactive )); then
+    pacman_args+=(--noconfirm)
+  fi
+
+  if [[ $pacman_config ]]; then
+    pacman_args+=(--config="$pacman_config")
+  fi
+
+  [[ -d $newroot ]] || die "%s is not a directory" "$newroot"
+
+  msg 'Creating install root at %s' "$newroot"
+  mkdir -m 0755 -p "$newroot"/var/{cache/pacman/pkg,lib/pacman,log} "$newroot"/{dev,run,etc/pacman.d}
+  mkdir -m 1777 -p "$newroot"/tmp
+  mkdir -m 0555 -p "$newroot"/{sys,proc}
+
+  chroot_setup "$newroot" || die "failed to setup chroot %s" "$newroot"
+
+  msg 'Installing packages to %s' "$newroot"
+  if ! pacman -r "$newroot" -Sy "${pacman_args[@]}"; then
+    die 'Failed to install packages to new root'
+  fi
+}
+
+bootstrap_debian() {
+  local newroot=$1; shift
+  local packages="$@"
+
+  [[ -d $newroot ]] || die "%s is not a directory" "$newroot"
+
+  # Determine codename from DISTRO_PRETTY or default to bookworm
+  local codename="bookworm"
+
+  msg 'Bootstraping Debian %s to %s' "$codename" "$newroot"
+  if ! debootstrap --include="${packages// /,}" "$codename" "$newroot" "http://deb.debian.org/debian"; then
+    die 'Failed to bootstrap Debian to new root'
+  fi
+}
+
+bootstrap_fedora() {
+  local newroot=$1; shift
+  local packages="$@"
+
+  [[ -d $newroot ]] || die "%s is not a directory" "$newroot"
+
+  msg 'Installing packages to %s' "$newroot"
+  if ! dnf --installroot="$newroot" -y install $packages; then
+    die 'Failed to install packages to new root'
+  fi
+}
+
+# Parse options
+distro=""
+while getopts ':D:h' flag; do
+  case $flag in
+    D) distro=$OPTARG ;;
+    h) usage; exit 0 ;;
+    :) die '%s: option requires an argument -- '\''%s'\' "${0##*/}" "$OPTARG" ;;
+    ?) die '%s: invalid option -- '\''%s'\' "${0##*/}" "$OPTARG" ;;
+  esac
+done
+shift $(( OPTIND - 1 ))
+
+# Auto-detect distro if not specified
+if [[ -z "$distro" ]]; then
+  # Try to read from calamares globalstorage via environment
+  distro="${DISTRO:-arch}"
+fi
+
+(( $# )) || die "No root directory specified"
+newroot=$1; shift
+
+case "$distro" in
+  arch)
+    bootstrap_arch "$newroot" "$@"
+    ;;
+  debian)
+    bootstrap_debian "$newroot" "$@"
+    ;;
+  fedora)
+    bootstrap_fedora "$newroot" "$@"
+    ;;
+  *)
+    die "Unsupported distribution: %s" "$distro"
+    ;;
+esac
+
+# vim: et ts=2 sw=2 ft=sh:

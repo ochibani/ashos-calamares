@@ -1,6 +1,21 @@
 #!/bin/bash
+# Enable UFW firewall if installed
+# Reads DISTRO from environment to determine distro-specific package queries
 
-if pacman -Qs ufw > /dev/null ; then
+DISTRO="${DISTRO:-arch}"
+
+# Check if ufw is installed
+is_installed() {
+  local package="$1"
+  case "$DISTRO" in
+    arch)   pacman -Qs "$package" > /dev/null 2>&1 ;;
+    debian) dpkg -l "$package" 2>/dev/null | grep -q "^ii" ;;
+    fedora) rpm -q "$package" > /dev/null 2>&1 ;;
+    *)      return 1 ;;
+  esac
+}
+
+if is_installed ufw; then
   ufw default deny incoming
   ufw default allow outgoing
   ufw enable
