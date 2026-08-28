@@ -47,8 +47,13 @@ def line_cb(line):
 
 
 def run_in_host(command, line_func):
-    proc = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
-                            universal_newlines=True, bufsize=1)
+    try:
+        proc = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+                                universal_newlines=True, bufsize=1)
+    except (FileNotFoundError, OSError) as e:
+        raise BootstrapError("Cannot launch '{}': {} "
+                             "(is the required tool installed on the live system?)"
+                             .format(command[0], e))
     for line in proc.stdout:
         if line.strip():
             line_func(line)
@@ -59,6 +64,7 @@ def run_in_host(command, line_func):
 
 def bootstrap_arch(root_mount_point, packages):
     """Bootstrap Arch Linux using pacstrap"""
+    distro = libcalamares.globalstorage.value("DISTRO")
     pacstrap_command = ["/etc/calamares/scripts/bootstrap_calamares", "-c", "-D", distro, root_mount_point] + packages
     run_in_host(pacstrap_command, line_cb)
 
