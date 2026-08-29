@@ -59,22 +59,6 @@ bootstrap_arch() {
   local newroot=$1; shift
   local pacman_args=("${@:-base}")
 
-  hostcache=0
-  copykeyring=1
-  copymirrorlist=1
-  interactive=0
-
-  while getopts ':C:cdGiM' flag; do
-    case $flag in
-      C) pacman_config=$OPTARG ;;
-      d) ;; # retired
-      c) hostcache=1 ;;
-      G) copykeyring=0 ;;
-      i) interactive=1 ;;
-      M) copymirrorlist=0 ;;
-    esac
-  done
-
   if (( ! hostcache )); then
     pacman_args+=(--cachedir="$newroot/var/cache/pacman/pkg")
   fi
@@ -131,8 +115,19 @@ bootstrap_fedora() {
 
 # Parse options
 distro=""
-while getopts ':D:h' flag; do
+hostcache=0
+copykeyring=1
+copymirrorlist=1
+interactive=0
+pacman_config=""
+while getopts ':C:cdGiMD:h' flag; do
   case $flag in
+    C) pacman_config=$OPTARG ;;
+    d) ;; # retired
+    c) hostcache=1 ;;
+    G) copykeyring=0 ;;
+    i) interactive=1 ;;
+    M) copymirrorlist=0 ;;
     D) distro=$OPTARG ;;
     h) usage; exit 0 ;;
     :) die '%s: option requires an argument -- '\''%s'\' "${0##*/}" "$OPTARG" ;;
