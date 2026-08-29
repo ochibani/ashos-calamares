@@ -1,0 +1,8 @@
+# Shell scripts and pacman hooks deployed into the live chroot must use LF
+# line endings. CRLF in a shebang (#!...\r) breaks bash with
+# "/bin/bash: -: invalid option", which previously prevented the
+# mkinitcpio-install-calamares hook from creating kernel presets.
+*.sh text eol=lf
+*.bash text eol=lf
+*.hook text eol=lf
+src/scripts/** text eol=lf
