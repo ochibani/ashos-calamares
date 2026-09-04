@@ -1,0 +1,31 @@
+{
+	"BUILD_DIR" : "/mnt/c/Users/ma535/Work/ashos-calamares/build/src/modules/localeq/calamares_viewmodule_localeq_autogen",
+	"CMAKE_BINARY_DIR" : "/mnt/c/Users/ma535/Work/ashos-calamares/build",
+	"CMAKE_CURRENT_BINARY_DIR" : "/mnt/c/Users/ma535/Work/ashos-calamares/build/src/modules/localeq",
+	"CMAKE_CURRENT_SOURCE_DIR" : "/mnt/c/Users/ma535/Work/ashos-calamares/src/modules/localeq",
+	"CMAKE_SOURCE_DIR" : "/mnt/c/Users/ma535/Work/ashos-calamares",
+	"CROSS_CONFIG" : false,
+	"GENERATOR" : "Ninja",
+	"INCLUDE_DIR" : "/mnt/c/Users/ma535/Work/ashos-calamares/build/src/modules/localeq/calamares_viewmodule_localeq_autogen/include",
+	"INPUTS" : 
+	[
+		"/mnt/c/Users/ma535/Work/ashos-calamares/src/modules/localeq/localeq-qt6.qml",
+		"/mnt/c/Users/ma535/Work/ashos-calamares/src/modules/localeq/Offline-qt6.qml",
+		"/mnt/c/Users/ma535/Work/ashos-calamares/src/modules/localeq/Map-qt6.qml",
+		"/mnt/c/Users/ma535/Work/ashos-calamares/src/modules/localeq/img/plus.png",
+		"/mnt/c/Users/ma535/Work/ashos-calamares/src/modules/localeq/img/pin.svg",
+		"/mnt/c/Users/ma535/Work/ashos-calamares/src/modules/localeq/img/locale.svg",
+		"/mnt/c/Users/ma535/Work/ashos-calamares/src/modules/localeq/img/minus.png"
+	],
+	"LOCK_FILE" : "/mnt/c/Users/ma535/Work/ashos-calamares/build/src/modules/localeq/CMakeFiles/calamares_viewmodule_localeq_autogen.dir/AutoRcc_localeq-qt6_EWIEGA46WW_Lock.lock",
+	"MULTI_CONFIG" : false,
+	"OPTIONS" : [ "-name", "localeq_qt6" ],
+	"OUTPUT_CHECKSUM" : "EWIEGA46WW",
+	"OUTPUT_NAME" : "qrc_localeq-qt6.cpp",
+	"RCC_EXECUTABLE" : "/usr/lib/qt6/rcc",
+	"RCC_LIST_OPTIONS" : [ "--list" ],
+	"SETTINGS_FILE" : "/mnt/c/Users/ma535/Work/ashos-calamares/build/src/modules/localeq/CMakeFiles/calamares_viewmodule_localeq_autogen.dir/AutoRcc_localeq-qt6_EWIEGA46WW_Used.txt",
+	"SOURCE" : "/mnt/c/Users/ma535/Work/ashos-calamares/src/modules/localeq/localeq-qt6.qrc",
+	"USE_BETTER_GRAPH" : true,
+	"VERBOSITY" : 0
+}

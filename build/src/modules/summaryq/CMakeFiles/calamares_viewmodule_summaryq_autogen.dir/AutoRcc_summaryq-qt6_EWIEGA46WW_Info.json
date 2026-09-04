@@ -1,0 +1,27 @@
+{
+	"BUILD_DIR" : "/mnt/c/Users/ma535/Work/ashos-calamares/build/src/modules/summaryq/calamares_viewmodule_summaryq_autogen",
+	"CMAKE_BINARY_DIR" : "/mnt/c/Users/ma535/Work/ashos-calamares/build",
+	"CMAKE_CURRENT_BINARY_DIR" : "/mnt/c/Users/ma535/Work/ashos-calamares/build/src/modules/summaryq",
+	"CMAKE_CURRENT_SOURCE_DIR" : "/mnt/c/Users/ma535/Work/ashos-calamares/src/modules/summaryq",
+	"CMAKE_SOURCE_DIR" : "/mnt/c/Users/ma535/Work/ashos-calamares",
+	"CROSS_CONFIG" : false,
+	"GENERATOR" : "Ninja",
+	"INCLUDE_DIR" : "/mnt/c/Users/ma535/Work/ashos-calamares/build/src/modules/summaryq/calamares_viewmodule_summaryq_autogen/include",
+	"INPUTS" : 
+	[
+		"/mnt/c/Users/ma535/Work/ashos-calamares/src/modules/summaryq/summaryq-qt6.qml",
+		"/mnt/c/Users/ma535/Work/ashos-calamares/src/modules/summaryq/img/keyboard.svg",
+		"/mnt/c/Users/ma535/Work/ashos-calamares/src/modules/summaryq/img/lokalize.svg"
+	],
+	"LOCK_FILE" : "/mnt/c/Users/ma535/Work/ashos-calamares/build/src/modules/summaryq/CMakeFiles/calamares_viewmodule_summaryq_autogen.dir/AutoRcc_summaryq-qt6_EWIEGA46WW_Lock.lock",
+	"MULTI_CONFIG" : false,
+	"OPTIONS" : [ "-name", "summaryq_qt6" ],
+	"OUTPUT_CHECKSUM" : "EWIEGA46WW",
+	"OUTPUT_NAME" : "qrc_summaryq-qt6.cpp",
+	"RCC_EXECUTABLE" : "/usr/lib/qt6/rcc",
+	"RCC_LIST_OPTIONS" : [ "--list" ],
+	"SETTINGS_FILE" : "/mnt/c/Users/ma535/Work/ashos-calamares/build/src/modules/summaryq/CMakeFiles/calamares_viewmodule_summaryq_autogen.dir/AutoRcc_summaryq-qt6_EWIEGA46WW_Used.txt",
+	"SOURCE" : "/mnt/c/Users/ma535/Work/ashos-calamares/src/modules/summaryq/summaryq-qt6.qrc",
+	"USE_BETTER_GRAPH" : true,
+	"VERBOSITY" : 0
+}

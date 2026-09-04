@@ -1,0 +1,26 @@
+{
+	"BUILD_DIR" : "/mnt/c/Users/ma535/Work/ashos-calamares/build/src/modules/finishedq/calamares_viewmodule_finishedq_autogen",
+	"CMAKE_BINARY_DIR" : "/mnt/c/Users/ma535/Work/ashos-calamares/build",
+	"CMAKE_CURRENT_BINARY_DIR" : "/mnt/c/Users/ma535/Work/ashos-calamares/build/src/modules/finishedq",
+	"CMAKE_CURRENT_SOURCE_DIR" : "/mnt/c/Users/ma535/Work/ashos-calamares/src/modules/finishedq",
+	"CMAKE_SOURCE_DIR" : "/mnt/c/Users/ma535/Work/ashos-calamares",
+	"CROSS_CONFIG" : false,
+	"GENERATOR" : "Ninja",
+	"INCLUDE_DIR" : "/mnt/c/Users/ma535/Work/ashos-calamares/build/src/modules/finishedq/calamares_viewmodule_finishedq_autogen/include",
+	"INPUTS" : 
+	[
+		"/mnt/c/Users/ma535/Work/ashos-calamares/src/modules/finishedq/finishedq-qt6.qml",
+		"/mnt/c/Users/ma535/Work/ashos-calamares/src/modules/finishedq/seedling.svg"
+	],
+	"LOCK_FILE" : "/mnt/c/Users/ma535/Work/ashos-calamares/build/src/modules/finishedq/CMakeFiles/calamares_viewmodule_finishedq_autogen.dir/AutoRcc_finishedq-qt6_EWIEGA46WW_Lock.lock",
+	"MULTI_CONFIG" : false,
+	"OPTIONS" : [ "-name", "finishedq_qt6" ],
+	"OUTPUT_CHECKSUM" : "EWIEGA46WW",
+	"OUTPUT_NAME" : "qrc_finishedq-qt6.cpp",
+	"RCC_EXECUTABLE" : "/usr/lib/qt6/rcc",
+	"RCC_LIST_OPTIONS" : [ "--list" ],
+	"SETTINGS_FILE" : "/mnt/c/Users/ma535/Work/ashos-calamares/build/src/modules/finishedq/CMakeFiles/calamares_viewmodule_finishedq_autogen.dir/AutoRcc_finishedq-qt6_EWIEGA46WW_Used.txt",
+	"SOURCE" : "/mnt/c/Users/ma535/Work/ashos-calamares/src/modules/finishedq/finishedq-qt6.qrc",
+	"USE_BETTER_GRAPH" : true,
+	"VERBOSITY" : 0
+}

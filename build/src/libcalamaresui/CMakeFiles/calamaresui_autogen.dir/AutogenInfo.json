@@ -1,0 +1,399 @@
+{
+	"BUILD_DIR" : "/mnt/c/Users/ma535/Work/ashos-calamares/build/src/libcalamaresui/calamaresui_autogen",
+	"CMAKE_BINARY_DIR" : "/mnt/c/Users/ma535/Work/ashos-calamares/build",
+	"CMAKE_CURRENT_BINARY_DIR" : "/mnt/c/Users/ma535/Work/ashos-calamares/build/src/libcalamaresui",
+	"CMAKE_CURRENT_SOURCE_DIR" : "/mnt/c/Users/ma535/Work/ashos-calamares/src/libcalamaresui",
+	"CMAKE_EXECUTABLE" : "/usr/sbin/cmake",
+	"CMAKE_LIST_FILES" : 
+	[
+		"/mnt/c/Users/ma535/Work/ashos-calamares/src/libcalamaresui/CMakeLists.txt",
+		"/usr/share/cmake/Modules/GNUInstallDirs.cmake",
+		"/mnt/c/Users/ma535/Work/ashos-calamares/src/libcalamaresui/libcalamaresui.qrc"
+	],
+	"CMAKE_SOURCE_DIR" : "/mnt/c/Users/ma535/Work/ashos-calamares",
+	"CROSS_CONFIG" : false,
+	"DEP_FILE" : "/mnt/c/Users/ma535/Work/ashos-calamares/build/src/libcalamaresui/calamaresui_autogen/deps",
+	"DEP_FILE_RULE_NAME" : "calamaresui_autogen/timestamp",
+	"HEADERS" : 
+	[
+		[
+			"/mnt/c/Users/ma535/Work/ashos-calamares/src/libcalamaresui/Branding.h",
+			"MU",
+			"EWIEGA46WW/moc_Branding.cpp",
+			null
+		],
+		[
+			"/mnt/c/Users/ma535/Work/ashos-calamares/src/libcalamaresui/ViewManager.h",
+			"MU",
+			"EWIEGA46WW/moc_ViewManager.cpp",
+			null
+		],
+		[
+			"/mnt/c/Users/ma535/Work/ashos-calamares/src/libcalamaresui/modulesystem/CppJobModule.h",
+			"MU",
+			"RUACCQ4MTV/moc_CppJobModule.cpp",
+			null
+		],
+		[
+			"/mnt/c/Users/ma535/Work/ashos-calamares/src/libcalamaresui/modulesystem/ModuleFactory.h",
+			"MU",
+			"RUACCQ4MTV/moc_ModuleFactory.cpp",
+			null
+		],
+		[
+			"/mnt/c/Users/ma535/Work/ashos-calamares/src/libcalamaresui/modulesystem/ModuleManager.h",
+			"MU",
+			"RUACCQ4MTV/moc_ModuleManager.cpp",
+			null
+		],
+		[
+			"/mnt/c/Users/ma535/Work/ashos-calamares/src/libcalamaresui/modulesystem/ProcessJobModule.h",
+			"MU",
+			"RUACCQ4MTV/moc_ProcessJobModule.cpp",
+			null
+		],
+		[
+			"/mnt/c/Users/ma535/Work/ashos-calamares/src/libcalamaresui/modulesystem/PythonJobModule.h",
+			"MU",
+			"RUACCQ4MTV/moc_PythonJobModule.cpp",
+			null
+		],
+		[
+			"/mnt/c/Users/ma535/Work/ashos-calamares/src/libcalamaresui/modulesystem/ViewModule.h",
+			"MU",
+			"RUACCQ4MTV/moc_ViewModule.cpp",
+			null
+		],
+		[
+			"/mnt/c/Users/ma535/Work/ashos-calamares/src/libcalamaresui/utils/Gui.h",
+			"MU",
+			"7HEHEGDA3T/moc_Gui.cpp",
+			null
+		],
+		[
+			"/mnt/c/Users/ma535/Work/ashos-calamares/src/libcalamaresui/utils/ImageRegistry.h",
+			"MU",
+			"7HEHEGDA3T/moc_ImageRegistry.cpp",
+			null
+		],
+		[
+			"/mnt/c/Users/ma535/Work/ashos-calamares/src/libcalamaresui/utils/Paste.h",
+			"MU",
+			"7HEHEGDA3T/moc_Paste.cpp",
+			null
+		],
+		[
+			"/mnt/c/Users/ma535/Work/ashos-calamares/src/libcalamaresui/utils/Qml.h",
+			"MU",
+			"7HEHEGDA3T/moc_Qml.cpp",
+			null
+		],
+		[
+			"/mnt/c/Users/ma535/Work/ashos-calamares/src/libcalamaresui/viewpages/BlankViewStep.h",
+			"MU",
+			"4DS6FYB4U4/moc_BlankViewStep.cpp",
+			null
+		],
+		[
+			"/mnt/c/Users/ma535/Work/ashos-calamares/src/libcalamaresui/viewpages/ExecutionViewStep.h",
+			"MU",
+			"4DS6FYB4U4/moc_ExecutionViewStep.cpp",
+			null
+		],
+		[
+			"/mnt/c/Users/ma535/Work/ashos-calamares/src/libcalamaresui/viewpages/QmlViewStep.h",
+			"MU",
+			"4DS6FYB4U4/moc_QmlViewStep.cpp",
+			null
+		],
+		[
+			"/mnt/c/Users/ma535/Work/ashos-calamares/src/libcalamaresui/viewpages/Slideshow.h",
+			"MU",
+			"4DS6FYB4U4/moc_Slideshow.cpp",
+			null
+		],
+		[
+			"/mnt/c/Users/ma535/Work/ashos-calamares/src/libcalamaresui/viewpages/ViewStep.h",
+			"MU",
+			"4DS6FYB4U4/moc_ViewStep.cpp",
+			null
+		],
+		[
+			"/mnt/c/Users/ma535/Work/ashos-calamares/src/libcalamaresui/widgets/ClickableLabel.h",
+			"MU",
+			"IMAN36LHMA/moc_ClickableLabel.cpp",
+			null
+		],
+		[
+			"/mnt/c/Users/ma535/Work/ashos-calamares/src/libcalamaresui/widgets/ErrorDialog.h",
+			"MU",
+			"IMAN36LHMA/moc_ErrorDialog.cpp",
+			null
+		],
+		[
+			"/mnt/c/Users/ma535/Work/ashos-calamares/src/libcalamaresui/widgets/FixedAspectRatioLabel.h",
+			"MU",
+			"IMAN36LHMA/moc_FixedAspectRatioLabel.cpp",
+			null
+		],
+		[
+			"/mnt/c/Users/ma535/Work/ashos-calamares/src/libcalamaresui/widgets/LogWidget.h",
+			"MU",
+			"IMAN36LHMA/moc_LogWidget.cpp",
+			null
+		],
+		[
+			"/mnt/c/Users/ma535/Work/ashos-calamares/src/libcalamaresui/widgets/PrettyRadioButton.h",
+			"MU",
+			"IMAN36LHMA/moc_PrettyRadioButton.cpp",
+			null
+		],
+		[
+			"/mnt/c/Users/ma535/Work/ashos-calamares/src/libcalamaresui/widgets/TranslationFix.h",
+			"MU",
+			"IMAN36LHMA/moc_TranslationFix.cpp",
+			null
+		],
+		[
+			"/mnt/c/Users/ma535/Work/ashos-calamares/src/libcalamaresui/widgets/WaitingWidget.h",
+			"MU",
+			"IMAN36LHMA/moc_WaitingWidget.cpp",
+			null
+		],
+		[
+			"/mnt/c/Users/ma535/Work/ashos-calamares/src/libcalamaresui/widgets/waitingspinnerwidget.h",
+			"MU",
+			"IMAN36LHMA/moc_waitingspinnerwidget.cpp",
+			null
+		]
+	],
+	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
+	"INCLUDE_DIR" : "/mnt/c/Users/ma535/Work/ashos-calamares/build/src/libcalamaresui/calamaresui_autogen/include",
+	"MOC_COMPILATION_FILE" : "/mnt/c/Users/ma535/Work/ashos-calamares/build/src/libcalamaresui/calamaresui_autogen/mocs_compilation.cpp",
+	"MOC_DEFINITIONS" : 
+	[
+		"KCOREADDONS_LIB",
+		"QT_CORE_LIB",
+		"QT_DISABLE_DEPRECATED_BEFORE=0x060400",
+		"QT_GUI_LIB",
+		"QT_NETWORK_LIB",
+		"QT_NO_DEBUG",
+		"QT_OPENGL_LIB",
+		"QT_QMLINTEGRATION_LIB",
+		"QT_QML_LIB",
+		"QT_QUICKWIDGETS_LIB",
+		"QT_QUICK_LIB",
+		"QT_SHARED",
+		"QT_SHAREDPOINTER_TRACK_POINTERS",
+		"QT_STRICT_ITERATORS",
+		"QT_SVG_LIB",
+		"QT_WIDGETS_LIB",
+		"UIDLLEXPORT_PRO",
+		"calamaresui_EXPORTS"
+	],
+	"MOC_DEPEND_FILTERS" : 
+	[
+		[
+			"Q_PLUGIN_METADATA",
+			"[\n][ \t]*Q_PLUGIN_METADATA[ \t]*\\([^\\)]*FILE[ \t]*\"([^\"]+)\""
+		]
+	],
+	"MOC_INCLUDES" : 
+	[
+		"/mnt/c/Users/ma535/Work/ashos-calamares/src/libcalamares",
+		"/mnt/c/Users/ma535/Work/ashos-calamares/build/src/libcalamares",
+		"/mnt/c/Users/ma535/Work/ashos-calamares",
+		"/mnt/c/Users/ma535/Work/ashos-calamares/src/libcalamaresui",
+		"/mnt/c/Users/ma535/Work/ashos-calamares/build/src/libcalamaresui",
+		"/usr/include/qt6/QtCore",
+		"/usr/include/qt6",
+		"/usr/lib/qt6/mkspecs/linux-g++",
+		"/usr/include/qt6/QtNetwork",
+		"/usr/include/KF6/KCoreAddons",
+		"/usr/include/qt6/QtGui",
+		"/usr/include/qt6/QtWidgets",
+		"/usr/include/qt6/QtSvg",
+		"/usr/include/qt6/QtQuickWidgets",
+		"/usr/include/qt6/QtQml",
+		"/usr/include/qt6/QtQmlIntegration",
+		"/usr/include/qt6/QtQuick",
+		"/usr/include/qt6/QtOpenGL",
+		"/usr/include",
+		"/usr/include/c++/16",
+		"/usr/include/c++/16/x86_64-pc-linux-gnu",
+		"/usr/include/c++/16/backward",
+		"/usr/lib/gcc/x86_64-pc-linux-gnu/16/include",
+		"/usr/local/include"
+	],
+	"MOC_MACRO_NAMES" : 
+	[
+		"Q_OBJECT",
+		"Q_GADGET",
+		"Q_NAMESPACE",
+		"Q_NAMESPACE_EXPORT",
+		"K_PLUGIN_FACTORY_WITH_JSON",
+		"K_EXPORT_PLASMA_DATAENGINE_WITH_JSON",
+		"K_EXPORT_PLASMA_RUNNER",
+		"Q_GADGET_EXPORT",
+		"Q_ENUM_NS",
+		"K_PLUGIN_FACTORY",
+		"K_PLUGIN_CLASS",
+		"K_PLUGIN_CLASS_WITH_JSON"
+	],
+	"MOC_OPTIONS" : [],
+	"MOC_PATH_PREFIX" : false,
+	"MOC_PREDEFS_CMD" : 
+	[
+		"/usr/sbin/c++",
+		"-std=gnu++20",
+		"-w",
+		"-dM",
+		"-E",
+		"/usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp"
+	],
+	"MOC_PREDEFS_FILE" : "/mnt/c/Users/ma535/Work/ashos-calamares/build/src/libcalamaresui/calamaresui_autogen/moc_predefs.h",
+	"MOC_RELAXED_MODE" : false,
+	"MOC_SKIP" : [],
+	"MULTI_CONFIG" : false,
+	"PARALLEL" : 4,
+	"PARSE_CACHE_FILE" : "/mnt/c/Users/ma535/Work/ashos-calamares/build/src/libcalamaresui/CMakeFiles/calamaresui_autogen.dir/ParseCache.txt",
+	"QT_MOC_EXECUTABLE" : "/usr/lib/qt6/moc",
+	"QT_UIC_EXECUTABLE" : "/usr/lib/qt6/uic",
+	"QT_VERSION_MAJOR" : 6,
+	"QT_VERSION_MINOR" : 11,
+	"SETTINGS_FILE" : "/mnt/c/Users/ma535/Work/ashos-calamares/build/src/libcalamaresui/CMakeFiles/calamaresui_autogen.dir/AutogenUsed.txt",
+	"SOURCES" : 
+	[
+		[
+			"/mnt/c/Users/ma535/Work/ashos-calamares/src/libcalamaresui/Branding.cpp",
+			"MU",
+			null
+		],
+		[
+			"/mnt/c/Users/ma535/Work/ashos-calamares/src/libcalamaresui/ViewManager.cpp",
+			"MU",
+			null
+		],
+		[
+			"/mnt/c/Users/ma535/Work/ashos-calamares/src/libcalamaresui/modulesystem/CppJobModule.cpp",
+			"MU",
+			null
+		],
+		[
+			"/mnt/c/Users/ma535/Work/ashos-calamares/src/libcalamaresui/modulesystem/ModuleFactory.cpp",
+			"MU",
+			null
+		],
+		[
+			"/mnt/c/Users/ma535/Work/ashos-calamares/src/libcalamaresui/modulesystem/ModuleManager.cpp",
+			"MU",
+			null
+		],
+		[
+			"/mnt/c/Users/ma535/Work/ashos-calamares/src/libcalamaresui/modulesystem/ProcessJobModule.cpp",
+			"MU",
+			null
+		],
+		[
+			"/mnt/c/Users/ma535/Work/ashos-calamares/src/libcalamaresui/modulesystem/PythonJobModule.cpp",
+			"MU",
+			null
+		],
+		[
+			"/mnt/c/Users/ma535/Work/ashos-calamares/src/libcalamaresui/modulesystem/ViewModule.cpp",
+			"MU",
+			null
+		],
+		[
+			"/mnt/c/Users/ma535/Work/ashos-calamares/src/libcalamaresui/utils/Gui.cpp",
+			"MU",
+			null
+		],
+		[
+			"/mnt/c/Users/ma535/Work/ashos-calamares/src/libcalamaresui/utils/ImageRegistry.cpp",
+			"MU",
+			null
+		],
+		[
+			"/mnt/c/Users/ma535/Work/ashos-calamares/src/libcalamaresui/utils/Paste.cpp",
+			"MU",
+			null
+		],
+		[
+			"/mnt/c/Users/ma535/Work/ashos-calamares/src/libcalamaresui/utils/Qml.cpp",
+			"MU",
+			null
+		],
+		[
+			"/mnt/c/Users/ma535/Work/ashos-calamares/src/libcalamaresui/viewpages/BlankViewStep.cpp",
+			"MU",
+			null
+		],
+		[
+			"/mnt/c/Users/ma535/Work/ashos-calamares/src/libcalamaresui/viewpages/ExecutionViewStep.cpp",
+			"MU",
+			null
+		],
+		[
+			"/mnt/c/Users/ma535/Work/ashos-calamares/src/libcalamaresui/viewpages/QmlViewStep.cpp",
+			"MU",
+			null
+		],
+		[
+			"/mnt/c/Users/ma535/Work/ashos-calamares/src/libcalamaresui/viewpages/Slideshow.cpp",
+			"MU",
+			null
+		],
+		[
+			"/mnt/c/Users/ma535/Work/ashos-calamares/src/libcalamaresui/viewpages/ViewStep.cpp",
+			"MU",
+			null
+		],
+		[
+			"/mnt/c/Users/ma535/Work/ashos-calamares/src/libcalamaresui/widgets/ClickableLabel.cpp",
+			"MU",
+			null
+		],
+		[
+			"/mnt/c/Users/ma535/Work/ashos-calamares/src/libcalamaresui/widgets/ErrorDialog.cpp",
+			"MU",
+			null
+		],
+		[
+			"/mnt/c/Users/ma535/Work/ashos-calamares/src/libcalamaresui/widgets/FixedAspectRatioLabel.cpp",
+			"MU",
+			null
+		],
+		[
+			"/mnt/c/Users/ma535/Work/ashos-calamares/src/libcalamaresui/widgets/LogWidget.cpp",
+			"MU",
+			null
+		],
+		[
+			"/mnt/c/Users/ma535/Work/ashos-calamares/src/libcalamaresui/widgets/PrettyRadioButton.cpp",
+			"MU",
+			null
+		],
+		[
+			"/mnt/c/Users/ma535/Work/ashos-calamares/src/libcalamaresui/widgets/TranslationFix.cpp",
+			"MU",
+			null
+		],
+		[
+			"/mnt/c/Users/ma535/Work/ashos-calamares/src/libcalamaresui/widgets/WaitingWidget.cpp",
+			"MU",
+			null
+		],
+		[
+			"/mnt/c/Users/ma535/Work/ashos-calamares/src/libcalamaresui/widgets/waitingspinnerwidget.cpp",
+			"MU",
+			null
+		]
+	],
+	"UIC_OPTIONS" : [],
+	"UIC_SEARCH_PATHS" : [],
+	"UIC_SKIP" : [],
+	"UIC_UI_FILES" : [],
+	"USE_BETTER_GRAPH" : true,
+	"VERBOSITY" : 0
+}

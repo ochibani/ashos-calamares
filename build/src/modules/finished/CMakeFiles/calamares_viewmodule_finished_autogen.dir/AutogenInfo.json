@@ -1,0 +1,211 @@
+{
+	"BUILD_DIR" : "/mnt/c/Users/ma535/Work/ashos-calamares/build/src/modules/finished/calamares_viewmodule_finished_autogen",
+	"CMAKE_BINARY_DIR" : "/mnt/c/Users/ma535/Work/ashos-calamares/build",
+	"CMAKE_CURRENT_BINARY_DIR" : "/mnt/c/Users/ma535/Work/ashos-calamares/build/src/modules/finished",
+	"CMAKE_CURRENT_SOURCE_DIR" : "/mnt/c/Users/ma535/Work/ashos-calamares/src/modules/finished",
+	"CMAKE_EXECUTABLE" : "/usr/sbin/cmake",
+	"CMAKE_LIST_FILES" : 
+	[
+		"/mnt/c/Users/ma535/Work/ashos-calamares/src/modules/finished/CMakeLists.txt",
+		"/usr/lib/cmake/Qt6/Qt6ConfigVersion.cmake",
+		"/usr/lib/cmake/Qt6/Qt6ConfigVersionImpl.cmake",
+		"/usr/lib/cmake/Qt6/Qt6Config.cmake",
+		"/usr/lib/cmake/Qt6/QtPublicCMakeIncludeGuardHelpers.cmake",
+		"/usr/lib/cmake/Qt6/QtPublicCMakeEarlyPolicyHelpers.cmake",
+		"/usr/lib/cmake/Qt6/QtPublicCMakeHelpers.cmake",
+		"/usr/lib/cmake/Qt6/Qt6ConfigExtras.cmake",
+		"/usr/lib/cmake/Qt6/QtPublicCMakeVersionHelpers.cmake",
+		"/usr/lib/cmake/Qt6/QtInstallPaths.cmake",
+		"/usr/lib/cmake/Qt6/Qt6TargetsPrecheck.cmake",
+		"/usr/lib/cmake/Qt6/QtFeature.cmake",
+		"/usr/share/cmake/Modules/CheckCXXCompilerFlag.cmake",
+		"/usr/lib/cmake/Qt6/QtFeatureCommon.cmake",
+		"/usr/lib/cmake/Qt6/QtPublicAndroidHelpers.cmake",
+		"/usr/lib/cmake/Qt6/QtPublicAppleHelpers.cmake",
+		"/usr/lib/cmake/Qt6/QtPublicCMakeHelpers.cmake",
+		"/usr/lib/cmake/Qt6/QtPublicCMakeVersionHelpers.cmake",
+		"/usr/lib/cmake/Qt6/QtPublicDependencyHelpers.cmake",
+		"/usr/lib/cmake/Qt6/QtPublicExternalProjectHelpers.cmake",
+		"/usr/lib/cmake/Qt6/QtPublicFinalizerHelpers.cmake",
+		"/usr/lib/cmake/Qt6/QtPublicFindPackageHelpers.cmake",
+		"/usr/lib/cmake/Qt6/QtPublicGitHelpers.cmake",
+		"/usr/lib/cmake/Qt6/QtPublicJsonHelpers.cmake",
+		"/usr/lib/cmake/Qt6/QtPublicPluginHelpers.cmake",
+		"/usr/lib/cmake/Qt6/QtPublicPluginHelpers_v2.cmake",
+		"/usr/lib/cmake/Qt6/QtPublicSbomAttributionHelpers.cmake",
+		"/usr/lib/cmake/Qt6/QtPublicSbomBuildToolHelpers.cmake",
+		"/usr/lib/cmake/Qt6/QtPublicSbomCommonGenerationHelpers.cmake",
+		"/usr/lib/cmake/Qt6/QtPublicSbomCpeHelpers.cmake",
+		"/usr/lib/cmake/Qt6/QtPublicSbomCycloneDXHelpers.cmake",
+		"/usr/lib/cmake/Qt6/QtPublicSbomDocumentNamespaceHelpers.cmake",
+		"/usr/lib/cmake/Qt6/QtPublicSbomDepHelpers.cmake",
+		"/usr/lib/cmake/Qt6/QtPublicSbomExternalReferenceHelpers.cmake",
+		"/usr/lib/cmake/Qt6/QtPublicSbomFileHelpers.cmake",
+		"/usr/lib/cmake/Qt6/QtPublicSbomGenerationHelpers.cmake",
+		"/usr/lib/cmake/Qt6/QtPublicSbomGenerationCycloneDXHelpers.cmake",
+		"/usr/lib/cmake/Qt6/QtPublicSbomHelpers.cmake",
+		"/usr/lib/cmake/Qt6/QtPublicSbomLicenseHelpers.cmake",
+		"/usr/lib/cmake/Qt6/QtPublicSbomOpsHelpers.cmake",
+		"/usr/lib/cmake/Qt6/QtPublicSbomPurlHelpers.cmake",
+		"/usr/lib/cmake/Qt6/QtPublicSbomPythonHelpers.cmake",
+		"/usr/lib/cmake/Qt6/QtPublicSbomQtEntityHelpers.cmake",
+		"/usr/lib/cmake/Qt6/QtPublicSbomRelationshipHelpers.cmake",
+		"/usr/lib/cmake/Qt6/QtPublicSbomSystemDepHelpers.cmake",
+		"/usr/lib/cmake/Qt6/QtPublicTargetHelpers.cmake",
+		"/usr/lib/cmake/Qt6/QtPublicTestHelpers.cmake",
+		"/usr/lib/cmake/Qt6/QtPublicToolHelpers.cmake",
+		"/usr/lib/cmake/Qt6/QtPublicWalkLibsHelpers.cmake",
+		"/usr/lib/cmake/Qt6/QtPublicWindowsHelpers.cmake",
+		"/usr/share/cmake/Modules/CMakeFindDependencyMacro.cmake",
+		"/usr/lib/cmake/Qt6/Qt6Dependencies.cmake",
+		"/usr/share/cmake/Modules/GNUInstallDirs.cmake",
+		"/mnt/c/Users/ma535/Work/ashos-calamares/src/modules/finished/finished.conf"
+	],
+	"CMAKE_SOURCE_DIR" : "/mnt/c/Users/ma535/Work/ashos-calamares",
+	"CROSS_CONFIG" : false,
+	"DEP_FILE" : "/mnt/c/Users/ma535/Work/ashos-calamares/build/src/modules/finished/calamares_viewmodule_finished_autogen/deps",
+	"DEP_FILE_RULE_NAME" : "calamares_viewmodule_finished_autogen/timestamp",
+	"HEADERS" : 
+	[
+		[
+			"/mnt/c/Users/ma535/Work/ashos-calamares/src/modules/finished/Config.h",
+			"MU",
+			"EWIEGA46WW/moc_Config.cpp",
+			null
+		],
+		[
+			"/mnt/c/Users/ma535/Work/ashos-calamares/src/modules/finished/FinishedPage.h",
+			"MU",
+			"EWIEGA46WW/moc_FinishedPage.cpp",
+			null
+		],
+		[
+			"/mnt/c/Users/ma535/Work/ashos-calamares/src/modules/finished/FinishedViewStep.h",
+			"MU",
+			"EWIEGA46WW/moc_FinishedViewStep.cpp",
+			null
+		]
+	],
+	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
+	"INCLUDE_DIR" : "/mnt/c/Users/ma535/Work/ashos-calamares/build/src/modules/finished/calamares_viewmodule_finished_autogen/include",
+	"MOC_COMPILATION_FILE" : "/mnt/c/Users/ma535/Work/ashos-calamares/build/src/modules/finished/calamares_viewmodule_finished_autogen/mocs_compilation.cpp",
+	"MOC_DEFINITIONS" : 
+	[
+		"KCOREADDONS_LIB",
+		"PLUGINDLLEXPORT_PRO",
+		"QT_CORE_LIB",
+		"QT_DBUS_LIB",
+		"QT_DISABLE_DEPRECATED_BEFORE=0x060400",
+		"QT_GUI_LIB",
+		"QT_NETWORK_LIB",
+		"QT_NO_DEBUG",
+		"QT_OPENGL_LIB",
+		"QT_QMLINTEGRATION_LIB",
+		"QT_QML_LIB",
+		"QT_QUICKWIDGETS_LIB",
+		"QT_QUICK_LIB",
+		"QT_SHARED",
+		"QT_SHAREDPOINTER_TRACK_POINTERS",
+		"QT_STRICT_ITERATORS",
+		"QT_SVG_LIB",
+		"QT_WIDGETS_LIB",
+		"calamares_viewmodule_finished_EXPORTS"
+	],
+	"MOC_DEPEND_FILTERS" : 
+	[
+		[
+			"Q_PLUGIN_METADATA",
+			"[\n][ \t]*Q_PLUGIN_METADATA[ \t]*\\([^\\)]*FILE[ \t]*\"([^\"]+)\""
+		]
+	],
+	"MOC_INCLUDES" : 
+	[
+		"/mnt/c/Users/ma535/Work/ashos-calamares/src/libcalamares",
+		"/mnt/c/Users/ma535/Work/ashos-calamares/build/src/libcalamares",
+		"/mnt/c/Users/ma535/Work/ashos-calamares/src/libcalamaresui",
+		"/mnt/c/Users/ma535/Work/ashos-calamares/build/src/libcalamaresui",
+		"/mnt/c/Users/ma535/Work/ashos-calamares/src/modules/finished",
+		"/mnt/c/Users/ma535/Work/ashos-calamares/build/src/modules/finished",
+		"/usr/include/qt6/QtCore",
+		"/usr/include/qt6",
+		"/usr/lib/qt6/mkspecs/linux-g++",
+		"/usr/include/qt6/QtNetwork",
+		"/usr/include/KF6/KCoreAddons",
+		"/usr/include/qt6/QtGui",
+		"/usr/include/qt6/QtWidgets",
+		"/usr/include/qt6/QtDBus",
+		"/usr/include/qt6/QtSvg",
+		"/usr/include/qt6/QtQuickWidgets",
+		"/usr/include/qt6/QtQml",
+		"/usr/include/qt6/QtQmlIntegration",
+		"/usr/include/qt6/QtQuick",
+		"/usr/include/qt6/QtOpenGL",
+		"/usr/include",
+		"/usr/include/c++/16",
+		"/usr/include/c++/16/x86_64-pc-linux-gnu",
+		"/usr/include/c++/16/backward",
+		"/usr/lib/gcc/x86_64-pc-linux-gnu/16/include",
+		"/usr/local/include"
+	],
+	"MOC_MACRO_NAMES" : 
+	[
+		"Q_OBJECT",
+		"Q_GADGET",
+		"Q_NAMESPACE",
+		"Q_NAMESPACE_EXPORT",
+		"K_PLUGIN_FACTORY_WITH_JSON",
+		"K_EXPORT_PLASMA_DATAENGINE_WITH_JSON",
+		"K_EXPORT_PLASMA_RUNNER",
+		"Q_GADGET_EXPORT",
+		"Q_ENUM_NS",
+		"K_PLUGIN_FACTORY",
+		"K_PLUGIN_CLASS",
+		"K_PLUGIN_CLASS_WITH_JSON"
+	],
+	"MOC_OPTIONS" : [],
+	"MOC_PATH_PREFIX" : false,
+	"MOC_PREDEFS_CMD" : 
+	[
+		"/usr/sbin/c++",
+		"-std=gnu++20",
+		"-w",
+		"-dM",
+		"-E",
+		"/usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp"
+	],
+	"MOC_PREDEFS_FILE" : "/mnt/c/Users/ma535/Work/ashos-calamares/build/src/modules/finished/calamares_viewmodule_finished_autogen/moc_predefs.h",
+	"MOC_RELAXED_MODE" : false,
+	"MOC_SKIP" : [],
+	"MULTI_CONFIG" : false,
+	"PARALLEL" : 4,
+	"PARSE_CACHE_FILE" : "/mnt/c/Users/ma535/Work/ashos-calamares/build/src/modules/finished/CMakeFiles/calamares_viewmodule_finished_autogen.dir/ParseCache.txt",
+	"QT_MOC_EXECUTABLE" : "/usr/lib/qt6/moc",
+	"QT_UIC_EXECUTABLE" : "/usr/lib/qt6/uic",
+	"QT_VERSION_MAJOR" : 6,
+	"QT_VERSION_MINOR" : 11,
+	"SETTINGS_FILE" : "/mnt/c/Users/ma535/Work/ashos-calamares/build/src/modules/finished/CMakeFiles/calamares_viewmodule_finished_autogen.dir/AutogenUsed.txt",
+	"SOURCES" : 
+	[
+		[
+			"/mnt/c/Users/ma535/Work/ashos-calamares/src/modules/finished/Config.cpp",
+			"MU",
+			null
+		],
+		[
+			"/mnt/c/Users/ma535/Work/ashos-calamares/src/modules/finished/FinishedPage.cpp",
+			"MU",
+			null
+		],
+		[
+			"/mnt/c/Users/ma535/Work/ashos-calamares/src/modules/finished/FinishedViewStep.cpp",
+			"MU",
+			null
+		]
+	],
+	"UIC_OPTIONS" : [],
+	"UIC_SEARCH_PATHS" : [],
+	"UIC_SKIP" : [],
+	"UIC_UI_FILES" : [],
+	"USE_BETTER_GRAPH" : true,
+	"VERBOSITY" : 0
+}

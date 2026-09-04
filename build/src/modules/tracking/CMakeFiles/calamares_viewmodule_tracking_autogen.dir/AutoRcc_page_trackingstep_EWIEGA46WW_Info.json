@@ -1,0 +1,29 @@
+{
+	"BUILD_DIR" : "/mnt/c/Users/ma535/Work/ashos-calamares/build/src/modules/tracking/calamares_viewmodule_tracking_autogen",
+	"CMAKE_BINARY_DIR" : "/mnt/c/Users/ma535/Work/ashos-calamares/build",
+	"CMAKE_CURRENT_BINARY_DIR" : "/mnt/c/Users/ma535/Work/ashos-calamares/build/src/modules/tracking",
+	"CMAKE_CURRENT_SOURCE_DIR" : "/mnt/c/Users/ma535/Work/ashos-calamares/src/modules/tracking",
+	"CMAKE_SOURCE_DIR" : "/mnt/c/Users/ma535/Work/ashos-calamares",
+	"CROSS_CONFIG" : false,
+	"GENERATOR" : "Ninja",
+	"INCLUDE_DIR" : "/mnt/c/Users/ma535/Work/ashos-calamares/build/src/modules/tracking/calamares_viewmodule_tracking_autogen/include",
+	"INPUTS" : 
+	[
+		"/mnt/c/Users/ma535/Work/ashos-calamares/src/modules/tracking/level-none.svg",
+		"/mnt/c/Users/ma535/Work/ashos-calamares/src/modules/tracking/level-machine.svg",
+		"/mnt/c/Users/ma535/Work/ashos-calamares/src/modules/tracking/level-install.svg",
+		"/mnt/c/Users/ma535/Work/ashos-calamares/src/modules/tracking/level-user.svg",
+		"/mnt/c/Users/ma535/Work/ashos-calamares/data/images/information.svgz"
+	],
+	"LOCK_FILE" : "/mnt/c/Users/ma535/Work/ashos-calamares/build/src/modules/tracking/CMakeFiles/calamares_viewmodule_tracking_autogen.dir/AutoRcc_page_trackingstep_EWIEGA46WW_Lock.lock",
+	"MULTI_CONFIG" : false,
+	"OPTIONS" : [ "-name", "page_trackingstep" ],
+	"OUTPUT_CHECKSUM" : "EWIEGA46WW",
+	"OUTPUT_NAME" : "qrc_page_trackingstep.cpp",
+	"RCC_EXECUTABLE" : "/usr/lib/qt6/rcc",
+	"RCC_LIST_OPTIONS" : [ "--list" ],
+	"SETTINGS_FILE" : "/mnt/c/Users/ma535/Work/ashos-calamares/build/src/modules/tracking/CMakeFiles/calamares_viewmodule_tracking_autogen.dir/AutoRcc_page_trackingstep_EWIEGA46WW_Used.txt",
+	"SOURCE" : "/mnt/c/Users/ma535/Work/ashos-calamares/src/modules/tracking/page_trackingstep.qrc",
+	"USE_BETTER_GRAPH" : true,
+	"VERBOSITY" : 0
+}

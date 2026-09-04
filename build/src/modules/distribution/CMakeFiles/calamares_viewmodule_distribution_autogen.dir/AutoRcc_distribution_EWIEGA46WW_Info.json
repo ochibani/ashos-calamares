@@ -1,0 +1,27 @@
+{
+	"BUILD_DIR" : "/mnt/c/Users/ma535/Work/ashos-calamares/build/src/modules/distribution/calamares_viewmodule_distribution_autogen",
+	"CMAKE_BINARY_DIR" : "/mnt/c/Users/ma535/Work/ashos-calamares/build",
+	"CMAKE_CURRENT_BINARY_DIR" : "/mnt/c/Users/ma535/Work/ashos-calamares/build/src/modules/distribution",
+	"CMAKE_CURRENT_SOURCE_DIR" : "/mnt/c/Users/ma535/Work/ashos-calamares/src/modules/distribution",
+	"CMAKE_SOURCE_DIR" : "/mnt/c/Users/ma535/Work/ashos-calamares",
+	"CROSS_CONFIG" : false,
+	"GENERATOR" : "Ninja",
+	"INCLUDE_DIR" : "/mnt/c/Users/ma535/Work/ashos-calamares/build/src/modules/distribution/calamares_viewmodule_distribution_autogen/include",
+	"INPUTS" : 
+	[
+		"/mnt/c/Users/ma535/Work/ashos-calamares/src/modules/distribution/icons/arch.svg",
+		"/mnt/c/Users/ma535/Work/ashos-calamares/src/modules/distribution/icons/fedora.svg",
+		"/mnt/c/Users/ma535/Work/ashos-calamares/src/modules/distribution/icons/debian.svg"
+	],
+	"LOCK_FILE" : "/mnt/c/Users/ma535/Work/ashos-calamares/build/src/modules/distribution/CMakeFiles/calamares_viewmodule_distribution_autogen.dir/AutoRcc_distribution_EWIEGA46WW_Lock.lock",
+	"MULTI_CONFIG" : false,
+	"OPTIONS" : [ "-name", "distribution" ],
+	"OUTPUT_CHECKSUM" : "EWIEGA46WW",
+	"OUTPUT_NAME" : "qrc_distribution.cpp",
+	"RCC_EXECUTABLE" : "/usr/lib/qt6/rcc",
+	"RCC_LIST_OPTIONS" : [ "--list" ],
+	"SETTINGS_FILE" : "/mnt/c/Users/ma535/Work/ashos-calamares/build/src/modules/distribution/CMakeFiles/calamares_viewmodule_distribution_autogen.dir/AutoRcc_distribution_EWIEGA46WW_Used.txt",
+	"SOURCE" : "/mnt/c/Users/ma535/Work/ashos-calamares/src/modules/distribution/distribution.qrc",
+	"USE_BETTER_GRAPH" : true,
+	"VERBOSITY" : 0
+}
